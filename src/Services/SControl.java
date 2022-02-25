@@ -6,8 +6,8 @@
 package Services;
 
 import Entities.Fournisseur;
-import Entities.User;
-import Tools.MaCon;
+import entités.User;
+import tools.MaConnexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,7 @@ import java.sql.Statement;
  */
 public class SControl {
     
-    Connection cnx = MaCon.getInstance().getCnx();
+    Connection cnx = MaConnexion.getInstance().getCnx();
     
     
     public static boolean Controlechar(Fournisseur f) {
