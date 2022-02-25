@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD
 package tests;
 
+=======
+
+package Test;
+>>>>>>> 0747a8f63e661a3bc8cf25b409880a74c6393ff2
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
