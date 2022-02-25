@@ -5,75 +5,139 @@
  */
 package entités;
 
+
 import java.util.Objects;
+import java.sql.Date;
 
 /**
  *
  * @author HP
  */
 public class personnel {
-     private int idp ,salaire ,nbrheure;
-    private String Specialite ; 
+     int Idp ; 
+     String nomp;
+     String prenomp;
+     int cinp ;
+     int telp;
+     String email ; 
+     int Salaire ; 
+     String Specialite ; 
+     int nbheure ; 
+     Date Date_embauche ; 
 
-    public personnel(int salaire, int nbrheure,String Specialite) {
-        this.salaire = salaire;
-        this.nbrheure = nbrheure;
+    public personnel(int Idp, String nomp, String prenomp, int cinp, int telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche) {
+        this.Idp = Idp;
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
         this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
     }
 
-    public personnel(int idp, int salaire, int nbrheure, String Specialite) {
-        this.idp = idp;
-        this.salaire = salaire;
-        this.nbrheure = nbrheure;
+    public personnel(String nomp, String prenomp, int cinp, int telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche) {
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
         this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
     }
-
 
     public personnel() {
     }
 
-    public personnel(int idp) {
-        this.idp = idp;
-    }
-
     public int getIdp() {
-        return idp;
+        return Idp;
     }
 
-    public int getNbrheure() {
-        return nbrheure;
+    public String getNomp() {
+        return nomp;
     }
+
+    public String getPrenomp() {
+        return prenomp;
+    }
+
+    public int getCinp() {
+        return cinp;
+    }
+
+    public int getTelp() {
+        return telp;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public int getSalaire() {
-        return salaire;
+        return Salaire;
     }
 
-   
     public String getSpecialite() {
         return Specialite;
     }
 
-    public void setIdp(int idp) {
-        this.idp = idp;
+    public int getNbheure() {
+        return nbheure;
     }
 
-    public void setNbrheure(int nbrheure) {
-        this.nbrheure = nbrheure;
+    public Date getDate_embauche() {
+        return Date_embauche;
     }
 
-    public void setSalaire(int salaire) {
-        this.salaire = salaire;
+    public void setIdp(int Idp) {
+        this.Idp = Idp;
     }
 
-    
+    public void setNomp(String nomp) {
+        this.nomp = nomp;
+    }
+
+    public void setPrenomp(String prenomp) {
+        this.prenomp = prenomp;
+    }
+
+    public void setCinp(int cinp) {
+        this.cinp = cinp;
+    }
+
+    public void setTelp(int telp) {
+        this.telp = telp;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSalaire(int Salaire) {
+        this.Salaire = Salaire;
+    }
+
     public void setSpecialite(String Specialite) {
         this.Specialite = Specialite;
     }
 
-    @Override
-    public String toString() {
-        return "personnel{" + "idp=" + idp + ", salaire=" + salaire + ", nbrheure=" + nbrheure + ",Specialite=" + Specialite + '}';
+    public void setNbheure(int nbheure) {
+        this.nbheure = nbheure;
     }
 
-    
+    public void setDate_embauche(Date Date_embauche) {
+        this.Date_embauche = Date_embauche;
+    }
+
+    @Override
+    public String toString() {
+        return "personnel{" + "Idp=" + Idp + ", nomp=" + nomp + ", prenomp=" + prenomp + ", cinp=" + cinp + ", telp=" + telp + ", email=" + email + ", Salaire=" + Salaire + ", Specialite=" + Specialite + ", nbheure=" + nbheure + ", Date_embauche=" + Date_embauche + '}';
+    }
+     
+  
     
 }

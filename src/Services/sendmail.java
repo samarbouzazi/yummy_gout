@@ -5,15 +5,10 @@
  */
 package services;
 
-import java.util.List;
-
 /**
  *
  * @author HP
  */
-public interface IService <T>{
-    void ajouter (T t);
-    List<T> afficher();
-    void supprimer (T t);
-    void modifier(T t);
+public class sendmail {
+    
 }

@@ -12,16 +12,16 @@ import java.sql.Date;
  * @author HP
  */
 public class reponse {
-    private int idrep ,idp ; 
+    private int idrep ,idrec ; 
     private String reponse ;
     private Date daterep; 
 
     public reponse() {
     }
 
-    public reponse( int idp, String reponse, Date daterep) {
+    public reponse( int idrec, String reponse, Date daterep) {
         
-        this.idp = idp;
+        this.idrec = idrec;
         this.reponse = reponse;
         this.daterep = daterep;
     }
@@ -56,20 +56,23 @@ public class reponse {
         return idrep;
     }
 
-   
-
-    public int getIdp() {
-        return idp;
+    public int getIdrec() {
+        return idrec;
     }
 
+   
+
+   
     public String getReponse() {
         return reponse;
     }
 
-    
-    public void setIdp(int idp) {
-        this.idp = idp;
+    public void setIdrec(int idrec) {
+        this.idrec = idrec;
     }
+
+    
+    
 
     public void setReponse(String reponse) {
         this.reponse = reponse;
@@ -81,7 +84,7 @@ public class reponse {
 
     @Override
     public String toString() {
-        return "reponse{" + "idrep=" + idrep + ",  idp=" + idp + ", reponse=" + reponse + ", daterep=" + daterep + '}';
+        return "reponse{" + "idrep=" + idrep + ",  idrec=" + idrec + ", reponse=" + reponse + ", daterep=" + daterep + '}';
     }
 
     

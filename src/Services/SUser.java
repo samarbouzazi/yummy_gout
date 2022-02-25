@@ -6,8 +6,8 @@
 package Services;
 
 import Entities.Fournisseur;
-import Entities.User;
-import Tools.MaCon;
+import entités.User;
+import tools.MaConnexion;
 import static com.sun.org.apache.bcel.internal.classfile.Utility.toHexString;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -28,7 +28,7 @@ import javafx.collections.ObservableList;
  * @author DELL PRCISION 3551
  */
 public class SUser {
-    Connection cnx = MaCon.getInstance().getCnx();
+    Connection cnx = MaConnexion.getInstance().getCnx();
     private Statement ste;
 
 public void ajouter(User u) {
@@ -129,7 +129,7 @@ public void deletef(int idu) {
         
          
         try {
-            String req="DELETE FROM user WHERE idu="+idu+";";
+            String req="DELETE FROM users WHERE idu="+idu+";";
             
             Statement st=cnx.createStatement();
             st.executeUpdate(req);
@@ -140,8 +140,8 @@ public void deletef(int idu) {
         
     }
 public List<User> chercherav(String facteur){
-          String req="SELECT * FROM user WHERE (nomu LIKE ? or prenomu LIKE ? or emailu LIKE ? or role LIKE ? )";
-            MaCon myCNX = MaCon.getInstance();
+          String req="SELECT * FROM users WHERE (nomu LIKE ? or prenomu LIKE ? or emailu LIKE ? or role LIKE ? )";
+            MaConnexion myCNX = MaConnexion.getInstance();
             String ch="%"+facteur+"%";
             ArrayList<User> myList= new ArrayList();
         try {
@@ -174,7 +174,7 @@ public List<User> chercherav(String facteur){
         return myList;
       }
 public int getnbreUSR() {
-        String req = "select count(*) from user";
+        String req = "select count(*) from users";
         int a=-1;
         try {
            Statement ste = cnx.createStatement();
