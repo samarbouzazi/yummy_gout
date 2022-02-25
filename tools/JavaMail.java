@@ -22,6 +22,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import Tools.QrCode;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 
 /**
  *
@@ -47,22 +52,36 @@ public class JavaMail {
         }
 
         });
+     // craeation of an empty object hen you fill the content with whatever you want 
         Message message = new MimeMessage(session);
           message.setSubject("Verifying reservation");
+          
           Address addressTo = new InternetAddress("bechir.marco@esprit.tn");
           message.setRecipient(Message.RecipientType.TO,addressTo);
           
-          MimeMultipart multipart = new MimeMultipart();
+          MimeMultipart emailContent = new MimeMultipart();
           
-          MimeBodyPart attachment = new MimeBodyPart();
-          attachment.attachFile(new File("C:\\Users\\tchet\\Documents\\NetBeansProjects\\FirstCrud\\src\\Files\\pdf.pdf"));
+          //attachment.attachFile(new File("C:\\Users\\tchet\\Documents\\NetBeansProjects\\FirstCrud\\src\\Files\\pdf.pdf"));
 
-           MimeBodyPart messageBodyPart = new MimeBodyPart();
-           messageBodyPart.setContent("<h1> Verify your reservation please","text/html");
-          multipart.addBodyPart(messageBodyPart);
-          multipart.addBodyPart(attachment);
-          message.setContent(multipart);
+            
+          //First The HTML Part 
+          MimeBodyPart messageBodyPart = new MimeBodyPart();
+          String htmlText = "<h1> This is your reservation in form of QrCode Don't forget to bring it with you </h1><img src=\"cid:image\">";
+          messageBodyPart.setContent(htmlText,"text/html");
+                    
+           // second part the image 
+           MimeBodyPart fileAttach = new MimeBodyPart();
+            fileAttach.attachFile(new File("C:\\Users\\tchet\\Desktop\\qrcode.png"));
           
+          //adding the image and the html Part 
+          emailContent.addBodyPart(messageBodyPart);
+          emailContent.addBodyPart(fileAttach);
+
+          //multipart.addBodyPart(attachment);
+          
+          //putting everything together in our Email Content 
+          message.setContent(emailContent);
+          // Sending the email
           Transport.send(message);
        
     }
