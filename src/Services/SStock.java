@@ -5,8 +5,8 @@
  */
 package Services;
 
-import entités.Stock;
-import tools.MaConnexion;
+import Entities.Stock;
+import Tools.MaCon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,9 +22,9 @@ import javafx.collections.ObservableList;
  */
 public class SStock implements IService<Stock>{
     
-    Connection cnx = MaConnexion.getInstance().getCnx();
+    Connection cnx = MaCon.getInstance().getCnx();
 
-    
+    @Override
     public void ajouter(Stock s) {
          try{
             String sql="insert into stocks(idf,noms,date_ajout_s,date_fin_s,prix_s,qt_s)"+"Values(?,?,?,?,?,?)";
@@ -43,7 +43,7 @@ public class SStock implements IService<Stock>{
 
     }
 
-    
+    @Override
     public List<Stock> afficher() {
         
         ObservableList<Stock> ols = FXCollections.observableArrayList();

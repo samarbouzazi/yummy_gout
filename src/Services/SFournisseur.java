@@ -7,7 +7,7 @@ package Services;
 
 
 import Entities.Fournisseur;
-import tools.MaConnexion;
+import Tools.MaCon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,8 +24,8 @@ import javafx.collections.ObservableList;
  * @author DELL PRCISION 3551
  */
 public class SFournisseur implements IService<Fournisseur>{
-    Connection cnx= MaConnexion.getInstance().getCnx();
-    
+    Connection cnx= MaCon.getInstance().getCnx();
+    @Override
     public void ajouter(Fournisseur f) {
         SControl sc=new SControl();
         
@@ -42,7 +42,8 @@ public class SFournisseur implements IService<Fournisseur>{
             ste.setString(5, f.getAddf());
             //ste.setInt(6, f.getIdf());
             ste.executeUpdate();
-            System.out.println("FOURNISSEUR Ajouté");   
+            System.out.println("FOURNISSEUR Ajouté"); 
+            
         }
         else
         {
@@ -53,12 +54,14 @@ public class SFournisseur implements IService<Fournisseur>{
         {
             System.out.println("FOURNISSEUR invalide"); 
         }
+            
+        
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-   
+    @Override
     public List<Fournisseur> afficher() {
         List<Fournisseur> Four = new ArrayList<>();
         String sql ="select * from fournisseurs";
@@ -182,7 +185,7 @@ public class SFournisseur implements IService<Fournisseur>{
     }
          public List<Fournisseur> chercherav(String facteur){
           String req="SELECT * FROM fournisseurs WHERE (nomf LIKE ? or prenomf LIKE ? or catf LIKE ? or addf LIKE ? )";
-            MaConnexion myCNX = MaConnexion.getInstance();
+            MaCon myCNX = MaCon.getInstance();
             String ch="%"+facteur+"%";
             ArrayList<Fournisseur> myList= new ArrayList();
         try {

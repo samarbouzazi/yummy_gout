@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class MaCon {
      private Connection cnx;
-    public String url="jdbc:mysql://localhost:3306/test";
+    public String url="jdbc:mysql://localhost:3306/restaurant";
     public String user="root";
     public String pwd ="";
     private static MaCon mc;
