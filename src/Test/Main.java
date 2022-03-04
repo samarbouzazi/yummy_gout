@@ -4,12 +4,17 @@
  * and open the template in the editor.
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 package tests;
 
 =======
 
 package Test;
 >>>>>>> 0747a8f63e661a3bc8cf25b409880a74c6393ff2
+=======
+
+package Test;
+>>>>>>> 8ce309909b8891b9609a6aecedc676ec7ee5f913
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
