@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tools.MaConnexion;
+import Tools.MaConnexion;
 
 /**
  *
@@ -28,7 +28,7 @@ public class Blogservice  implements IService<Blog> {
           try {if(Controlechar(b)){
               if(existe(b)== 0){
             String sql;
-              sql = "insert into Blog(titreblog,descblog) values('"+b.getTitreblog()+"','"+b.getDescblog()+"')";
+              sql = "insert into Blog(titreblog,descblog,image) values('"+b.getTitreblog()+"','"+b.getDescblog()+"','"+b.getImage()+"')";
             Statement ste = cnx.createStatement();
             ste.executeUpdate(sql);
             System.out.println(" Blog Ajoutée");}
@@ -62,6 +62,8 @@ public int existe(Blog b) throws SQLException {
                 b.setIdblog(bs.getInt("Idblog"));
                 b.setTitreblog(bs.getString("Titreblog"));
                 b.setDescblog(bs.getString("Descblog"));
+                b.setImage(bs.getString("Image"));
+                
                 Blogs.add(b);
             }
         } catch (SQLException ex) {
@@ -84,11 +86,14 @@ public int existe(Blog b) throws SQLException {
 
     @Override
     public void modifier(Blog b) {
-        String sql="update blog set  titreblog= ?, descblog= ?  where Idblog='"+b.getIdblog()+"'";
+        String sql="update blog set  titreblog= ?, descblog= ?, image= ? where Idblog='"+b.getIdblog()+"'";
             try {
             PreparedStatement ste =cnx.prepareStatement(sql);   
             ste.setString(1, b.getTitreblog());
-            ste.setString(2, b.getDescblog());          
+            ste.setString(2, b.getDescblog()); 
+             ste.setString(3, b.getImage()); 
+            
+            
             ste.executeUpdate();
             System.out.println("Blog Modifié");
         } catch (SQLException ex) {
@@ -100,7 +105,7 @@ public int existe(Blog b) throws SQLException {
      
   
         
-          String req = "SELECT idblog,titreblog,descblog FROM blog order by titreblog DESC";
+          String req = "SELECT idblog,titreblog,descblog,image FROM blog order by titreblog DESC";
 
         ObservableList<Blog> list=FXCollections.observableArrayList();
         try {
@@ -108,7 +113,7 @@ public int existe(Blog b) throws SQLException {
             ResultSet rst = st.executeQuery(req);
            while(rst.next()){
                
-             Blog f=new Blog(rst.getInt(1),rst.getString(2),rst.getString(3));
+             Blog f=new Blog(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getString(4));
                list.add(f);
            }
 
@@ -118,12 +123,13 @@ public int existe(Blog b) throws SQLException {
         return list;
        
      }
-   public List<Blog> chercherTitreBlog(String titre){
+   public ObservableList<Blog> chercherTitreBlog(String titre){
           String sql="SELECT * FROM Blog WHERE (titreblog LIKE ? or descblog LIKE ? )";
          //   Connection CNX = MaConnexion.getCNX();
          Connection cnx= MaConnexion.getInstance().getCnx();
             String ch="%"+titre+"%";
-            ArrayList<Blog> myList= new ArrayList();
+             ObservableList<Blog> myList= FXCollections.observableArrayList();
+           // ArrayList<Blog> myList= new ArrayList();
         try {
             
                   Statement ste = cnx.createStatement();
@@ -150,7 +156,7 @@ public int existe(Blog b) throws SQLException {
         }
         return myList;
       }
-   public static boolean Controlechar(Blog b) {
+   public boolean Controlechar(Blog b) {
 		String str = (b.getTitreblog()).toLowerCase();
                 if (str.length() == 0)
                     return false;
