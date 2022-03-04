@@ -9,11 +9,11 @@ import java.util.List;
 
 /**
  *
- * @author HP
+ * @author LENOVO
  */
-public interface IService <T>{
-    void ajouter (T t);
-    List<T> afficher();
-    void supprimer (T t);
-    void modifier(T t);
+public interface IService <Y>{
+    void ajouter(Y y);
+    List<Y> afficher();
+    void modifier (Y y);
+    void supprimer (Y y);
 }
