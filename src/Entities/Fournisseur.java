@@ -16,6 +16,22 @@ public class Fournisseur {
     private String catf;
     private int telf;
     private String addf;
+    private int maxx;
+    private float somme;
+
+    public float getSomme() {
+        return somme;
+    }
+
+    public void setSomme(float somme) {
+        this.somme = somme;
+    }
+
+    public Fournisseur(String nomf, float somme) {
+        this.nomf = nomf;
+        this.somme = somme;
+    }
+    
 
     public Fournisseur() {
     }
@@ -26,6 +42,11 @@ public class Fournisseur {
 
     public Fournisseur(String nomf) {
         this.nomf = nomf;
+    }
+
+    public Fournisseur(String nomf, int maxx) {
+        this.nomf = nomf;
+        this.maxx = maxx;
     }
 
     public Fournisseur(String nomf, String prenomf) {
@@ -61,6 +82,14 @@ public class Fournisseur {
 
     public String getNomf() {
         return nomf;
+    }
+
+    public int getMaxx() {
+        return maxx;
+    }
+
+    public void setMaxx(int maxx) {
+        this.maxx = maxx;
     }
 
     public void setNomf(String nomf) {
@@ -101,7 +130,14 @@ public class Fournisseur {
 
     @Override
     public String toString() {
-        return "Fournisseur{" + "idf=" + idf + ", nomf=" + nomf + ", prenomf=" + prenomf + ", catf=" + catf + ", telf=" + telf + ", addf=" + addf + '}';
+        return "Fournisseur{" + "idf=" + idf + ", nomf=" + nomf + ", prenomf=" + prenomf + ", catf=" + catf + ", telf=" + telf + ", addf=" + addf + ", maxx=" + maxx + ", somme=" + somme + '}';
     }
+
+    
+
+    
+
+    
+    
     
 }

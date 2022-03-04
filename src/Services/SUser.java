@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package Services;
-
-import Entities.Fournisseur;
-import entités.User;
-import tools.MaConnexion;
-import static com.sun.org.apache.bcel.internal.classfile.Utility.toHexString;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.json.*;
+import Entities.User;
+import Tools.MaCon;
+//import static com.sun.org.apache.bcel.internal.classfile.Utility.toHexString;
+//import java.nio.charset.StandardCharsets;
+//import java.security.MessageDigest;
+//import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,174 +18,310 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-//import org.json.simple.JSONObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.math.BigInteger; 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest; 
+import java.security.NoSuchAlgorithmException; 
+import org.json.simple.JSONObject;
+
 
 /**
  *
- * @author DELL PRCISION 3551
+ * @author marwen
  */
 public class SUser {
-    Connection cnx = MaConnexion.getInstance().getCnx();
+    public static byte[] getSHA(String input) throws NoSuchAlgorithmException
+    { 
+        // Static getInstance method is called with hashing SHA 
+        MessageDigest md = MessageDigest.getInstance("SHA-256"); 
+  
+        // digest() method called 
+        // to calculate message digest of an input 
+        // and return array of byte
+        return md.digest(input.getBytes(StandardCharsets.UTF_8)); 
+    }
+    
+        public static String toHexString(byte[] hash)
+        {
+            // Convert byte array into signum representation 
+            BigInteger number = new BigInteger(1, hash); 
+
+            // Convert message digest into hex value 
+            StringBuilder hexString = new StringBuilder(number.toString(16)); 
+
+            // Pad with leading zeros
+            while (hexString.length() < 32) 
+            { 
+                hexString.insert(0, '0'); 
+            } 
+
+            return hexString.toString();  }
+    
+    
+    
+    Connection con = MaCon.getInstance().getCnx();
     private Statement ste;
 
-public void ajouter(User u) {
-        SControl sc=new SControl();
-        
-        String sql ="insert into user(nomu,prenomu,cinu,telu,emailu,password,role) values(?,?,?,?,?,?,?) ";
+    public SUser() {
         try {
-            if( sc.Controlechar(u)){
-        if (sc.existe(u)==0 ){
-            
-            PreparedStatement ste =cnx.prepareStatement(sql);
-            ste.setString(1, u.getNomu());
-            ste.setString(2, u.getPrenomu());
-            ste.setInt(3, u.getCinu());
-            ste.setInt(4, u.getTelu());
-            ste.setString(5, u.getEmailu());
-            ste.setString(6, u.getPassword());
-            ste.setString(7, u.getRole());
-            
-            ste.executeUpdate();
-            System.out.println("Compte Ajouté"); 
-            
-        }
-        else
-        {
-            System.out.println("Compte déjà existe"); 
-        }
-        }
-        else
-        {
-            System.out.println("Compte invalide"); 
-        
-        } 
-        }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    
-}
-public List<User> afficher() {
-        List<User> usr = new ArrayList<>();
-        String sql ="select * from user";
-        try {
-            Statement ste= cnx.createStatement();
-            ResultSet rs =ste.executeQuery(sql);
-            while(rs.next()){
-                User u = new User();
-            u.setIdu( rs.getInt("idu"));
-            u.setNomu(rs.getString("nomu"));
-            u.setPrenomu(rs.getString("prenomu"));
-            u.setCinu(rs.getInt("cinu"));
-            u.setTelu(rs.getInt("telu"));
-            u.setEmailu(rs.getString("emailu"));
-            u.setPassword(rs.getString("password"));
-            u.setRole(rs.getString("role"));
-                usr.add(u);
-//                
-            }
+            ste = con.createStatement();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex);
         }
-        return usr;
     }
 
-public ObservableList<User> RECHERCHE(int idu ) {
-         ObservableList<User> usr = FXCollections.observableArrayList();
-        String req = "SELECT * FROM user where idu LIKE '" + idu + "%'  ";
+    public void ajouterUser(User user) throws SQLException {
+        String pass="";
+        try{pass=toHexString(getSHA( user.getPassword()));}
+        catch(NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        } 
+   
+        String req1 = "INSERT INTO `users` (`email`,`roles`,`password`,`cin`, `username`) "
+                + "VALUES ('" + user.getEmail()+ "','"+ user.getRoles()+"', '" +pass+ "', '" + user.getCin()+ "', '" + user.getUsername()+ "');";
        
+         
+        ste.executeUpdate(req1);
+        System.out.println("Utilisateur ajouté");
+    }
+     public void Sendcode(int id_user,String code) throws SQLException{
+     String req="INSERT INTO codemail (id_user,code) VALUES('"+id_user+"','"+code+"');";
+     ste.executeUpdate(req);
+        System.out.println("Code generated");
+     
+ }
+    public int checkcode (int id_user,String code) throws SQLException{
+         int nb = 0;
 
-        ObservableList<User> list=FXCollections.observableArrayList();
+        String req1 = "SELECT count(code) FROM `codemail` WHERE id_user";
+        PreparedStatement preparedStatement = con.prepareStatement(req1);
+
+        ResultSet result = preparedStatement.executeQuery();
+        if (result.first()) {
+            nb = result.getInt(1);
+        }
+
+        return nb;
+        
+    }
+    
+     public void modifierUser(User user) throws SQLException {
+        String sql = "UPDATE users SET `email`=?,`roles`=?,`password`=?,`cin`=?, `username`=? "
+              +" WHERE id=" + user.getId();
+        PreparedStatement ste;
+        String pass="";
+        try{pass=toHexString(getSHA( user.getPassword()));}
+        catch(NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        } 
         try {
-           Statement st = cnx.createStatement();
-            ResultSet rst = st.executeQuery(req);
-           while(rst.next()){
-               
-              User u=new User(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getInt(4),rst.getInt(5),rst.getString(6),rst.getString(7),rst.getString(8));
-               list.add(u);
-           }
+            ste = con.prepareStatement(sql);
+            
+            ste.setString(1, user.getEmail());
+            ste.setString(2,"'['"+user.getRoles()+"']'");
+            ste.setString(3, pass);        
+            ste.setInt(4, user.getCin());
+            ste.setString(5, user.getUsername());
+            ste.executeUpdate();
+            int rowsUpdated = ste.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("La modification de l'utilisateur : " + user.getUsername() + " a été éffectuée avec succès ");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+     
+       public void supprimerUser(User user) {
+
+        try {
+            String req = "DELETE FROM `users` WHERE `users`.`id` = ?";
+            PreparedStatement ste = con.prepareStatement(req);
+            ste.setInt(1, user.getId());
+            ste.executeUpdate();
+            System.out.println("Utilisateur supprimé");
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }
+
+    }
+       
+        public List<User> readAll() throws SQLException {
+        List<User> list = new ArrayList<>();
+        ResultSet res = ste.executeQuery("select * from users ");
+        User user = null;
+        while (res.next()) {
+            user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));          
+            list.add(user);
+            System.out.println("all" + list);
         }
         return list;
-}
-
-public void update(User u) {
-
-        try {
-            String req="UPDATE user SET `nomu`='"+u.getNomu()+"',`prenomu`='"+u.getPrenomu() +"',`cinu`='"+u.getCinu()+"',`telu`='"+u.getTelu()+"',`emailu`='"+u.getEmailu()+"',`password`='"+u.getPassword()+"',`role`='"+u.getRole()+"' WHERE `idu`='"+u.getIdu()+"'";
-            Statement st=cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Compte modifié");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
+        public String findcodebyid(int id_user)throws SQLException {
+        String req = "SELECT code from codemail where id_user='" + id_user + "'";
+        ResultSet res = ste.executeQuery(req);
+        String code = null;
 
-public void deletef(int idu) {
-        
-         
-        try {
-            String req="DELETE FROM users WHERE idu="+idu+";";
+        while (res.next()) {
+            code = res.getString("code");
+
+        }
+
+        return code;
+    }
+        public String getUserRole(int id_user) throws SQLException {
+        String req = "SELECT roles from users where id='" + id_user + "'";
+        ResultSet res = ste.executeQuery(req);
+        String role = null;
+
+        while (res.next()) {
             
-            Statement st=cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("Compte supprimé");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             String jsonString  = res.getString("roles");
+           
+//            JSONObject obj = new JSONObject(jsonString);
+//            String pageName = obj.getJSONObject("pageInfo").getString("pageName");
+
         }
-        
+
+        return role;
     }
-public List<User> chercherav(String facteur){
-          String req="SELECT * FROM users WHERE (nomu LIKE ? or prenomu LIKE ? or emailu LIKE ? or role LIKE ? )";
-            MaConnexion myCNX = MaConnexion.getInstance();
-            String ch="%"+facteur+"%";
-            ArrayList<User> myList= new ArrayList();
+
+         public List<User> readAllUserByRole(String role) throws SQLException {
+        List<User> list = new ArrayList<>();
+        ResultSet res = ste.executeQuery("select * from users WHERE roles='" + role + "'");
+        User user = null;
+        while (res.next()) {
+            user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));        
+            list.add(user);
+        }
+        System.out.println("all" + list);
+
+        return list;
+    }
+         
+        public User authentifier(String email, String pwd) throws SQLException {
+        String req = "select * from users WHERE email=? and password=?";
+        String pass="";
+        try{pass=toHexString(getSHA(pwd));}
+        catch(NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        } 
+        PreparedStatement steprep = con.prepareStatement(req);
+        steprep.setString(1, email);
+        steprep.setString(2, pass);
+
+        ResultSet res = steprep.executeQuery();
+
+        User user = null;
+        if (res.next()) {
+            user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));       
+        }
+
+        return user;
+    }
+      
+        
+         public List<User> TrierParUserName() throws SQLException {
+        List<User> list = new ArrayList<>();
+        ResultSet res = ste.executeQuery("select * from users ORDER BY username ASC");
+        User user = null;
+        while (res.next()) {
+            user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));       
+            list.add(user);
+        }
+        System.out.println(list);
+        return list;
+    }
+
+         
+         public List<User> TrierParCIN() throws SQLException {
+        List<User> list = new ArrayList<>();
+        ResultSet res = ste.executeQuery("select * from users ORDER BY cin ASC");
+        User user = null;
+        while (res.next()) {
+            user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));       
+            list.add(user);
+        }
+        System.out.println(list);
+        return list;
+    }
+         
+            public User getUserById(int id_user) throws SQLException {
+        User user = new User();
+      
+            String req = "SELECT * from users where id='" + id_user + "'";
+            ResultSet res = ste.executeQuery(req);
+            while (res.next()) {
+                          user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));        
+            }
+                    System.out.println(user);
+                    return user;
+
+            }
+            
+            
+    public Integer getUserByUserName(String username) throws SQLException{
+         User user = new User();
+
+        String req = "SELECT * from users where username='" + username + "'";
+        ResultSet res = ste.executeQuery(req);
+        while (res.next()) {
+            user = new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getInt(5), res.getString(6));
+        }
+        System.out.println(user);
+        return user.getId();
+
+    }
+    public int getIdbymail(String mail) {
         try {
-            Statement st = myCNX.getCnx()
-                    .createStatement();
-            PreparedStatement pst = myCNX.getCnx().prepareStatement(req);
-            pst.setString(1, ch);
-            pst.setString(2, ch);
-            pst.setString(3, ch);
-            pst.setString(4, ch);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()){
-                User u = new User();
-                u.setIdu(rs.getInt(1));
-                u.setNomu(rs.getString(2));
-                u.setPrenomu(rs.getString(3));
-                u.setCinu(rs.getInt(4));
-                u.setTelu(rs.getInt(5));
-                u.setEmailu(rs.getString(6));
-                u.setPassword(rs.getString(7));
-                u.setRole(rs.getString(8));
-                
-                
-                myList.add(u);
-                //System.out.println("founisseur trouvé! ");
+            PreparedStatement st = con.prepareStatement("select * from users where email=?");
+            st.setString(1, mail);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getInt(1);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return myList;
-      }
-public int getnbreUSR() {
-        String req = "select count(*) from users";
-        int a=-1;
+        return 0;
+
+    }
+     public void setNewMotPass(int idUser ,String pass){
+       PreparedStatement st;
+        
+        try{pass=toHexString(getSHA( pass));}
+        catch(NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        } 
         try {
-           Statement ste = cnx.createStatement();
-            ResultSet rst = ste.executeQuery(req);
-   
-           while(rst.next()){
-              a= rst.getInt(1);
-           }
-           return a;
+            String req = "UPDATE `users` SET `password` ='" + pass + "' WHERE `users`.`id` = "+idUser;
+            st = con.prepareStatement(req);
+            st.executeUpdate(req);
+             System.out.println(req);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return -1;
-        }
+        }  
+        
     }
+     public String getPassbyId(int id) {
+        try {
+            PreparedStatement st = con.prepareStatement("select * from users where id=?");
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            rs.beforeFirst();
+            if (rs.next()) {
+                return rs.getString("password");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "";
+      }
+     
+    
 }
