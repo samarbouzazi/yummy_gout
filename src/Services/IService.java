@@ -10,6 +10,7 @@ import java.util.List;
 /**
  *
  * @author HP
+ * @param <T>
  */
 public interface IService <T>{
     void ajouter (T t);

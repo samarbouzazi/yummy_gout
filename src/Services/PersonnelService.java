@@ -5,8 +5,7 @@
  */
 package services;
 
-import Entities.Fournisseur;
-import entités.Stock;
+
 import entités.User;
 import entités.personnel;
 import java.sql.Connection;
@@ -20,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.sql.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tools.MaConnexion;
@@ -40,30 +41,56 @@ public class PersonnelService implements IService<personnel> {
         size = rs.getInt(1);
         return size;
     }
-
+public static boolean Controlechar1(personnel p) {
+		String str = (p.getNomp()).toLowerCase();
+                if (str.length() == 0)
+                    return false;
+		char[] charArray = str.toCharArray();
+                
+		for (int i = 0; i < charArray.length; i++) {
+			char ch = charArray[i];
+			if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
+				return false;
+			}
+		}
+		return true;
+	}
+    public static boolean Controlechar2(personnel p) {
+		String str = (p.getPrenomp()).toLowerCase() ;
+                if (str.length() == 0)
+                    return false;
+		char[] charArray = str.toCharArray();
+                
+		for (int i = 0; i < charArray.length; i++) {
+			char ch = charArray[i];
+			if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
+				return false;
+			}
+		}
+		return true;
+	}
+    
     @Override
     public void ajouter(personnel p) {
         
-          String sql ="insert into personnell(nomp,prenomp,cinp,telp,email,Salaire,Specialite,nbheure,Date_embauche) values(?,?,?,?,?,?,?,?,?); ";
+          String sql ="insert into personnell(nomp,prenomp,cinp,telp,email,Salaire,Specialite,nbheure,Date_embauche) values(?,?,?,?,?,?,?,?,?) ; ";
         try {
-
-           if (existe(p) == 0) {
-                PreparedStatement ste = cnx.prepareStatement(sql);
+           if (existe(p)==0 ) {
+           PreparedStatement ste = cnx.prepareStatement(sql);
                 
                 ste.setString(1, p.getNomp());
                 ste.setString(2, p.getPrenomp());
-                ste.setInt(3, p.getCinp());
-                ste.setInt(4, p.getTelp());
+                ste.setString(3, p.getCinp());
+                ste.setString(4, p.getTelp());
                 ste.setString(5, p.getEmail());
                 ste.setInt(6, p.getSalaire());
                 ste.setString(7, p.getSpecialite());
                 ste.setInt(8, p.getNbheure());
                 ste.setDate(9, p.getDate_embauche());
                 ste.executeUpdate();
-                System.out.println("Personnel Ajoutée");
-          } else {
-              System.out.println("Personnel  existe déja ");
-           }
+                System.out.println("Personnel Ajoutée");}  
+           else {System.out.println("Personnel  existe déja ");}
+           
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -83,8 +110,8 @@ public class PersonnelService implements IService<personnel> {
                 p.setIdp(rs.getInt("Idp"));
                 p.setNomp(rs.getString("nomp"));
                 p.setPrenomp(rs.getString("prenomp"));
-                p.setCinp(rs.getInt("cinp"));
-                p.setTelp(rs.getInt("telp"));
+                p.setCinp(rs.getString("cinp"));
+                p.setTelp(rs.getString("telp"));
                 p.setEmail(rs.getString("email"));
                 p.setSalaire(rs.getInt("Salaire"));
                 p.setSpecialite(rs.getString("Specialite"));
@@ -133,11 +160,12 @@ public class PersonnelService implements IService<personnel> {
         }
     }
     
-public List<personnel> chercherav(String facteur){
+public ObservableList<personnel> chercherav(String facteur){
           String req="SELECT * FROM personnell WHERE (nomp LIKE ? or prenomp LIKE ? or email LIKE ? or Specialite LIKE ? )";
             MaConnexion myCNX = MaConnexion.getInstance();
             String ch="%"+facteur+"%";
-            ArrayList<personnel> myList= new ArrayList();
+            ObservableList<personnel> myList= FXCollections.observableArrayList();
+            
         try {
             Statement st = myCNX.getCnx().createStatement();
             PreparedStatement pst = myCNX.getCnx().prepareStatement(req);
@@ -184,7 +212,7 @@ public List<personnel> chercherav(String facteur){
     }
   public ObservableList<personnel> Triper() {
     
-          String req = "SELECT Idp,nomp,prenomp,cinp,telp,email,Salaire,Specialite,nbheure,Date_embauche FROM personnell order by nomp";
+          String req = "SELECT Idp,nomp,prenomp,cinp,telp,email,Salaire,Specialite,nbheure,Date_embauche FROM personnell order by Salaire";
 
         ObservableList<personnel> list=FXCollections.observableArrayList();
         try {
@@ -192,7 +220,7 @@ public List<personnel> chercherav(String facteur){
             ResultSet rst = st.executeQuery(req);
            while(rst.next()){
                
-              personnel p=new personnel(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getInt(4),rst.getInt(5),rst.getString(6),rst.getInt(7),rst.getString(8),rst.getInt(9),rst.getDate(10));
+              personnel p=new personnel(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getString(4),rst.getString(5),rst.getString(6),rst.getInt(7),rst.getString(8),rst.getInt(9),rst.getDate(10));
                list.add(p);
            }
 
@@ -202,4 +230,43 @@ public List<personnel> chercherav(String facteur){
         return list;
        
      }
+ public List<personnel> prime(int Idp) {
+     
+     List<personnel> personnel = new ArrayList<>();
+        String sql ="SELECT Idp,nomp,prenomp,Salaire,nbheure,taux_horaire,(nbheure-taux_horaire)*(Salaire/taux_horaire)as prime from personnell where nbheure>taux_horaire  and Idp like '"+ Idp +"'  ";
+        try {
+            Statement ste= cnx.createStatement();
+            ResultSet rs =ste.executeQuery(sql);
+            while(rs.next()){
+                personnel p = new personnel();
+                p.setIdp(rs.getInt("Idp"));
+                p.setNomp(rs.getString("nomp"));
+                p.setPrenomp(rs.getString("prenomp"));
+                p.setSalaire(rs.getInt("Salaire"));
+                p.setNbheure(rs.getInt("nbheure"));
+                p.setTaux_horaire(rs.getInt("taux_horaire"));
+                p.setPrime(rs.getInt("prime"));
+               
+                personnel.add(p);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return personnel;
+     
+ }
+ 
+ public static boolean controlmail(String text) {
+////  if(text == null || text.isEmpty()){ return false ;}
+////  String emailr="^ [a-zA-Z0-9 _ + & * -] + (?: \\\\. [A-zA-Z0-9 _ + & * -] +) * @ (?: [A- zA-Z0-9 -] + \\\\.) + [a-zA-Z] {2,7} $";
+////  Pattern p = Pattern.compile(emailr);
+////        return Pattern.matcher(text).matches();
+////  
+//  }      
+String emailr = "^ [A-Z0-9 ._% + -] + @ [A-Z0-9 .-] + \\\\. [A-Z] {2,6} $";
+Pattern emailp = Pattern.compile(emailr,Pattern.CASE_INSENSITIVE);
+Matcher matcher =emailp.matcher(text);
+return matcher.find();
+  } 
+
 }
