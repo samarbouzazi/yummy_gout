@@ -6,8 +6,9 @@
 package Services;
 
 import Entities.Fournisseur;
-import entités.User;
-import tools.MaConnexion;
+import Entities.Stock;
+import Entities.User;
+import Tools.MaCon;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,11 +20,11 @@ import java.sql.Statement;
  */
 public class SControl {
     
-    Connection cnx = MaConnexion.getInstance().getCnx();
+    Connection cnx = MaCon.getInstance().getCnx();
     
     
-    public static boolean Controlechar(Fournisseur f) {
-		String str = (f.getNomf()).toLowerCase();
+   public static boolean Controlechar(Stock f) {
+		String str = (f.getNoms()).toLowerCase();
                 if (str.length() == 0)
                     return false;
 		char[] charArray = str.toCharArray();
@@ -36,9 +37,6 @@ public class SControl {
 		}
 		return true;
 	}
-    
-    
-    
     public int existe(Fournisseur f) throws SQLException {
         Statement s = cnx.createStatement();
         ResultSet rs = s.executeQuery("SELECT COUNT(*) from fournisseurs WHERE addf = '" + f.getAddf()+"'");
@@ -78,27 +76,7 @@ public class SControl {
 		return true;
 	}
     
-    public static boolean Controlechar(User u) {
-		String str = (u.getPrenomu()).toLowerCase();
-                if (str.length() == 0)
-                    return false;
-		char[] charArray = str.toCharArray();
-                
-		for (int i = 0; i < charArray.length; i++) {
-			char ch = charArray[i];
-			if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
-				return false;
-			}
-		}
-		return true;
-	}
     
-    public int existe(User u) throws SQLException {
-        Statement s = cnx.createStatement();
-        ResultSet rs = s.executeQuery("SELECT COUNT(*) from user WHERE emailu = '" + u.getEmailu()+"'");
-        int size = 0;
-        rs.next();
-        size=rs.getInt(1);
-        return size;
-    }
+    
+   
 }
