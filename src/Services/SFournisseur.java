@@ -7,6 +7,7 @@ package Services;
 
 
 import Entities.Fournisseur;
+import Entities.Stock;
 import Tools.MaCon;
 
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class SFournisseur implements IService<Fournisseur>{
         
         String sql ="insert into fournisseurs(nomf,prenomf,catf,telf,addf) values(?,?,?,?,?) ";
         try {
-            if( sc.Controle(f)){
+            
         if (sc.existe(f)==0 ){
             
             PreparedStatement ste =cnx.prepareStatement(sql);
@@ -49,11 +50,8 @@ public class SFournisseur implements IService<Fournisseur>{
         {
             System.out.println("FOURNISSEUR déjà existe"); 
         }
-        }
-        else
-        {
-            System.out.println("FOURNISSEUR invalide"); 
-        }
+        
+       
             
         
         } catch (SQLException ex) {
@@ -101,6 +99,21 @@ public class SFournisseur implements IService<Fournisseur>{
 //    }
 //    
 //    }
+     public void delete(Fournisseur f){
+        String requete = "DELETE FROM fournisseurs WHERE idf=?";
+        try {
+            
+            PreparedStatement pst = MaCon.getInstance().getCnx().prepareStatement(requete);
+            pst.setInt(1,f.getIdf());
+            pst.executeUpdate();
+            System.out.println("Produit supprimé");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        
+    }
+    
+    }
+
    
      public ObservableList<Fournisseur> RECHERCHE(int idf ) {
          ObservableList<Fournisseur> Fournisseur = FXCollections.observableArrayList();
@@ -158,10 +171,19 @@ public class SFournisseur implements IService<Fournisseur>{
 //        }
 //    
 //}
+     
          public void update(Fournisseur f) {
 
-        try {
-            String req="UPDATE fournisseurs SET `nomf`='"+f.getNomf()+"',`prenomf`='"+f.getPrenomf() +"',`catf`='"+f.getCatf()+"',`telf`='"+f.getTelf()+"',`addf`='"+f.getAddf()+"' WHERE `idf`='"+f.getIdf()+"'";
+        
+            String req="UPDATE fournisseurs SET"
+                    + " `nomf`='"+f.getNomf()+"'"
+                    + ",`prenomf`='"+f.getPrenomf() +"'"
+                    + ",`catf`='"+f.getCatf()+"',"
+                    + "`telf`='"+f.getTelf()+"'"
+                    + ",`addf`='"+f.getAddf()+"'"
+                    + " WHERE `idf`='"+f.getIdf()+"'";
+            try {
+                PreparedStatement ste=cnx.prepareStatement(req);
             Statement st=cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("fournisseur modifié");
@@ -183,11 +205,11 @@ public class SFournisseur implements IService<Fournisseur>{
         }
         
     }
-         public List<Fournisseur> chercherav(String facteur){
+         public ObservableList<Fournisseur> chercherav(String facteur){
           String req="SELECT * FROM fournisseurs WHERE (nomf LIKE ? or prenomf LIKE ? or catf LIKE ? or addf LIKE ? )";
             MaCon myCNX = MaCon.getInstance();
             String ch="%"+facteur+"%";
-            ArrayList<Fournisseur> myList= new ArrayList();
+            ObservableList<Fournisseur> myList= FXCollections.observableArrayList();
         try {
             Statement st = myCNX.getCnx()
                     .createStatement();
@@ -232,6 +254,71 @@ public class SFournisseur implements IService<Fournisseur>{
             return -1;
         }
     }
+        public String calculer_pannier(){
+   List<Fournisseur> panier = new ArrayList<>();
+        String sql="select fournisseurs.nomf, count(stocks.ids) as maxx from fournisseurs INNER join stocks where fournisseurs.idf=stocks.idf group by stocks.idf order by maxx desc limit 1";
+        String ch=null;
+          try {
+            Statement ste= cnx.createStatement();
+            ResultSet rs =ste.executeQuery(sql);
+            while(rs.next()){
+           //  panier pas =new panier(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
+               
+//               
+             ch="Fournisseur favorie: "+rs.getString("nomf")+" avec nombre de produits= "+rs.getInt("maxx");
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+                
+        return ch;
+    }
+        public List<Fournisseur> fournisseur_favorie(){
+        List<Fournisseur> panier = new ArrayList<>();
+        String sql="select fournisseurs.nomf,sum(stocks.prix_s*stocks.qt_s)as somme from fournisseurs inner join stocks where fournisseurs.idf=stocks.idf group by fournisseurs.idf";
+        
+          try {
+            Statement ste= cnx.createStatement();
+            ResultSet rs =ste.executeQuery(sql);
+            while(rs.next()){
+           //  panier pas =new panier(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
+               Fournisseur pas = new Fournisseur();
+               
+                
+                pas.setNomf(rs.getString("nomf"));
+                pas.setSomme(rs.getFloat("somme"));
+                
+                panier.add(pas);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           return panier;     
+        
+    }
+         public ObservableList<Fournisseur> Trif() {
+     
+  
+        
+          String req = "SELECT idf,nomf,prenomf,catf,telf,addf FROM fournisseurs order by nomf DESC";
+
+        ObservableList<Fournisseur> list=FXCollections.observableArrayList();
+        try {
+           Statement st = cnx.createStatement();
+            ResultSet rst = st.executeQuery(req);
+           while(rst.next()){
+               
+              Fournisseur f=new Fournisseur(rst.getInt(1),rst.getString(2),rst.getString(3),rst.getString(4),rst.getInt(5),rst.getString(6));
+               list.add(f);
+           }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
+       
+     }
     }
 
     
