@@ -5,25 +5,16 @@
  */
 package Services;
 
-import Entities.Fournisseur;
-import entités.User;
-import tools.MaConnexion;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import entities.categorie;
 
 /**
  *
- * @author DELL PRCISION 3551
+ * @author chaim
  */
-public class SControl {
+public class Scontrol {
     
-    Connection cnx = MaConnexion.getInstance().getCnx();
-    
-    
-    public static boolean Controlechar(Fournisseur f) {
-		String str = (f.getNomf()).toLowerCase();
+      public static boolean Controlechar(categorie c) {
+		String str = (c.getNomcat()).toLowerCase();
                 if (str.length() == 0)
                     return false;
 		char[] charArray = str.toCharArray();
@@ -38,67 +29,4 @@ public class SControl {
 	}
     
     
-    
-    public int existe(Fournisseur f) throws SQLException {
-        Statement s = cnx.createStatement();
-        ResultSet rs = s.executeQuery("SELECT COUNT(*) from fournisseurs WHERE addf = '" + f.getAddf()+"'");
-        int size = 0;
-        rs.next();
-        size=rs.getInt(1);
-        return size;
-    }
-    //  public static void showNotif(String text, String text2) {
-//        Notifications notificationBuilder = Notifications.create()
-//                .title(text)
-//                .text(text2)
-//                .graphic(null)
-//                .hideAfter(Duration.ofSeconds(10))
-//                
-//                .onAction(new EventHandler<ActionEvent>() {
-//                    public void handle(ActionEvent event) {
-//
-//                    }
-//                });
-//
-//        notificationBuilder.darkStyle();
-//        notificationBuilder.showConfirm();
-//    }
-    public static boolean Controle(Fournisseur f) {
-		String str = (f.getNomf()).toLowerCase();
-                if (str.length() == 0)
-                    return false;
-		char[] charArray = str.toCharArray();
-                
-		for (int i = 0; i < charArray.length; i++) {
-			char ch = charArray[i];
-			if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
-				return false;
-			}
-		}
-		return true;
-	}
-    
-    public static boolean Controlechar(User u) {
-		String str = (u.getPrenomu()).toLowerCase();
-                if (str.length() == 0)
-                    return false;
-		char[] charArray = str.toCharArray();
-                
-		for (int i = 0; i < charArray.length; i++) {
-			char ch = charArray[i];
-			if (!((ch >= 'a' && ch <= 'z') || (String.valueOf(ch)).equals(" "))) {
-				return false;
-			}
-		}
-		return true;
-	}
-    
-    public int existe(User u) throws SQLException {
-        Statement s = cnx.createStatement();
-        ResultSet rs = s.executeQuery("SELECT COUNT(*) from user WHERE emailu = '" + u.getEmailu()+"'");
-        int size = 0;
-        rs.next();
-        size=rs.getInt(1);
-        return size;
-    }
 }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.swing.JOptionPane;
 import tools.Maconnexion;
 
 /**
@@ -50,7 +51,7 @@ public class categorieservice implements Iservice<categorie> {
     
     @Override
     public List<categorie> afficher() {
-          List<categorie> categorie = new ArrayList<>();
+        List<categorie> categorie = new ArrayList<>();
         String sql ="select * from categorie";
         try {
             Statement ste= cnx.createStatement();
@@ -122,9 +123,11 @@ public class categorieservice implements Iservice<categorie> {
             System.out.println(ex.getMessage());
         }
     }
-
+        
+   
+}
     
-    }
+    
 
    
     

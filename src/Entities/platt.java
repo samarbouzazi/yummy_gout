@@ -15,37 +15,46 @@ public class platt {
     private String Descplat;
     private String Nomplat;
     private String image;
-    private int favorie;
     private int idcatt;
-    //categorie c;
+    private int prix_plat;
+    private int q_plat;
+    private int stock;
+   
+    
     public platt(){
         
     }
-   
-    public platt(int Idplat, String Descplat, String Nomplat, String image, int favorie, int  idcatt) {
+ public platt(int Idplat) {
+        this.Idplat = Idplat;
+    }
+    public platt(int Idplat, String Descplat, String Nomplat, String image, int idcatt, int prix_plat, int q_plat ,int stock ) {
         this.Idplat = Idplat;
         this.Descplat = Descplat;
         this.Nomplat = Nomplat;
         this.image = image;
-        this.favorie = favorie;
         this.idcatt = idcatt;
+        this.prix_plat = prix_plat;
+        this.q_plat = q_plat;
+        this.stock =stock;
     }
 
-    public platt( String Descplat, String Nomplat, String image, int favorie,  int idcatt) {
-       
+    public platt(String Descplat, String Nomplat, String image, int idcatt, int prix_plat, int q_plat, int stock) {
         this.Descplat = Descplat;
         this.Nomplat = Nomplat;
         this.image = image;
-        this.favorie = favorie;
         this.idcatt = idcatt;
-    }
-    
-   public platt(int Idplat) {
-        this.Idplat = Idplat;
+        this.prix_plat = prix_plat;
+        this.q_plat = q_plat;
+        this.stock=stock;
     }
 
+    public int getStock() {
+        return stock;
+    }
 
-    
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public int getIdplat() {
         return Idplat;
@@ -59,17 +68,20 @@ public class platt {
         return Nomplat;
     }
 
-    public String getimage() {
+    public String getImage() {
         return image;
     }
 
-    public int getFavorie() {
-        return favorie;
+    public int getIdcatt() {
+        return idcatt;
     }
 
-   
-    public int  getidcatt() {
-        return idcatt;
+    public int getPrix_plat() {
+        return prix_plat;
+    }
+
+    public int getQ_plat() {
+        return q_plat;
     }
 
     public void setIdplat(int Idplat) {
@@ -84,23 +96,30 @@ public class platt {
         this.Nomplat = Nomplat;
     }
 
-    public void setimage(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public void setFavorie(int favorie) {
-        this.favorie = favorie;
-    }
-
-    public void setidcatt(int idcatt) {
+    public void setIdcatt(int idcatt) {
         this.idcatt = idcatt;
     }
 
+    public void setPrix_plat(int prix_plat) {
+        this.prix_plat = prix_plat;
+    }
+
+    public void setQ_plat(int q_plat) {
+        this.q_plat = q_plat;
+    }
 
     @Override
     public String toString() {
-        return "plat{" + "Idplat=" + Idplat + ", Descplat=" + Descplat + ", Nomplat=" + Nomplat + ", image=" + image + ", favorie=" + favorie + ", idcatt=" + idcatt + '}';
+        return "platt{" + "Idplat=" + Idplat + ", Descplat=" + Descplat + ", Nomplat=" + Nomplat + ", image=" + image + ", idcatt=" + idcatt + ", prix_plat=" + prix_plat + ", q_plat=" + q_plat + ", stock=" + stock + '}';
     }
+
     
+   
+   
+  
     
 }
