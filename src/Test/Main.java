@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-package Test;
+import package Test;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
