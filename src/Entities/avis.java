@@ -18,37 +18,29 @@ public class avis {
     private Date dateavis;
     private int like ;
     private int Deslike ;
+   private String descriptionavis;
 
     public avis()  { 
     }
 
-    public avis(int idclient, int like, int Deslike) {
-        this.idclient = idclient;
-       
-        this.like = like;
-        this.Deslike = Deslike;
-    }
-    public avis(int idavis ) { 
-        this.idavis = idavis;
-        
-    }
-
-    public avis(int idavis, int idclient, int like, int Deslike) {
-        this.idavis = idavis;
-        this.idclient = idclient;
-        this.like = like;
-        this.Deslike = Deslike;
-    }
-   
-    public avis(int idavis, int idclient, Date dateavis, int like, int Deslike) {
+    public avis(int idavis, int idclient, Date dateavis, int like, int Deslike, String descriptionavis) {
         this.idavis = idavis;
         this.idclient = idclient;
         this.dateavis = dateavis;
         this.like = like;
         this.Deslike = Deslike;
+        this.descriptionavis = descriptionavis;
     }
 
-   
+    public avis(int idclient, int like, int Deslike, String descriptionavis) {
+        this.idclient = idclient;
+        this.like = like;
+        this.Deslike = Deslike;
+        this.descriptionavis = descriptionavis;
+    }
+
+  
+
     public int getIdavis() {
         return idavis;
     }
@@ -67,6 +59,10 @@ public class avis {
 
     public int getDeslike() {
         return Deslike;
+    }
+
+    public String getDescriptionavis() {
+        return descriptionavis;
     }
 
     public void setIdavis(int idavis) {
@@ -89,10 +85,15 @@ public class avis {
         this.Deslike = Deslike;
     }
 
+    public void setDescriptionavis(String descriptionavis) {
+        this.descriptionavis = descriptionavis;
+    }
+
     @Override
     public String toString() {
-        return "Blog{" + "idavis=" + idavis + ", idclient=" + idclient + ", dateavis=" + dateavis + ", like=" + like + ", Deslike=" + Deslike + '}';
+        return "avis{" + "idavis=" + idavis + ", idclient=" + idclient + ", dateavis=" + dateavis + ", like=" + like + ", Deslike=" + Deslike + ", descriptionavis=" + descriptionavis + '}';
     }
+
     
     
 }
