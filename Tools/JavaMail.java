@@ -47,7 +47,7 @@ public class JavaMail {
         @Override
         protected PasswordAuthentication getPasswordAuthentication (){
         
-        return new PasswordAuthentication("yummygout@gmail.com","yummy*1999");
+        return new PasswordAuthentication("marcoslandolsi@gmail.com","wtfomgnoob23");
         }
 
         });
@@ -65,12 +65,12 @@ public class JavaMail {
             
           //First The HTML Part 
           MimeBodyPart messageBodyPart = new MimeBodyPart();
-          String htmlText = "<h1> This is your reservation in form of QrCode Don't forget to bring it with you </h1>";
+          String htmlText = "<h1> This is your reservation in form of QrCode Don't forget to bring it with you </h1><img src=\"cid:image\">";
           messageBodyPart.setContent(htmlText,"text/html");
                     
            // second part the image 
            MimeBodyPart fileAttach = new MimeBodyPart();
-            fileAttach.attachFile(new File("C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1\\qr.png"));
+            fileAttach.attachFile(new File("C:\\Users\\tchet\\Desktop\\qr.png"));
           
           //adding the image and the html Part 
           emailContent.addBodyPart(messageBodyPart);

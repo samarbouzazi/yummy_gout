@@ -105,17 +105,15 @@ Connection connection = DataBaseConnection.getInstance().getCn();
             ResultSet rs =ste.executeQuery(sql);
             while(rs.next()){
                 ClientInfo cl = new ClientInfo();
-               cl.setId_client(rs.getInt("id_client"));
+               
                 cl.setNom(rs.getString("nom"));
                 cl.setPrenom(rs.getString("prenom"));
-                cl.setAdress(rs.getString("adress"));
                   cl.setEmail(rs.getString("email"));
-                  cl.setTel(rs.getInt("tel"));
-                    
+                    cl.setAdress(rs.getString("adress"));
                     cl.setPoints(rs.getInt("points"));                     
-                     
+                     cl.setTel(rs.getInt("tel"));
                       cl.setDate(rs.getDate("date").toLocalDate());
-                        
+                        cl.setId_client(rs.getInt("id_client"));
 
                 clients.add(cl);
             }

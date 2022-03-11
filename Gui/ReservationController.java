@@ -1,4 +1,4 @@
-package Gui;
+package GUI;
 
 
 import com.jfoenix.controls.JFXButton;
@@ -62,7 +62,6 @@ import Tools.DataBaseConnection;
 import Tools.JavaMail;
 import Tools.QrCode;
 import com.google.zxing.NotFoundException;
-import com.google.zxing.ReaderException;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.encoder.QRCode;
 import com.itextpdf.text.Paragraph;
@@ -184,7 +183,7 @@ public class ReservationController implements Initializable {
        
     }
     @FXML
-    void sendQr(ActionEvent event) throws WriterException, MessagingException, NotFoundException, SQLException, ReaderException {
+    void sendQr(ActionEvent event) throws WriterException, MessagingException, NotFoundException, SQLException {
         ReservationService rs= new ReservationService();
         try {
             QrCode.getQRCodeImage(ms.getById().toString());
@@ -412,7 +411,7 @@ resList.add(rev)  ;
 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sur about the procedure", ButtonType.YES, ButtonType.NO);
 alert.showAndWait();
 if (alert.getResult() == ButtonType.YES){
-    String file_name="C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1\\Infores.pdf";
+    String file_name="C:\\Users\\tchet\\Desktop\\Infores.pdf";
         Document document =new Document() {};
         try {
             
@@ -532,15 +531,15 @@ if (alert.getResult() == ButtonType.YES) {
     @FXML
     private void backAction(ActionEvent event) throws IOException {
          
-//        try {
-//            javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("Adm.fxml"));
-//            Scene sceneview = new Scene(tableview);
-//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            window.setScene(sceneview);
-//            window.show();
-//        } catch (IOException ex) {
-//            System.out.println(ex.getMessage());
-//        }
+        try {
+            javafx.scene.Parent tableview = FXMLLoader.load(getClass().getResource("Adm.fxml"));
+            Scene sceneview = new Scene(tableview);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(sceneview);
+            window.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
  

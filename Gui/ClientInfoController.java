@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gui;
+package GUI;
 
 
 
@@ -13,14 +13,16 @@ import Entities.ClientInfo;
 import Entities.Reservation;
 import Services.ClientInfoService;
 import Services.Control;
-
+import Services.ReservationService;
 import Tools.DataBaseConnection;
-
+import Tools.JavaMail;
+import Tools.QrCode;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.WriterException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.jfoenix.controls.JFXDatePicker;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -55,15 +57,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.mail.MessagingException;
-import static org.apache.poi.hssf.usermodel.HSSFFooter.date;
-import static org.apache.poi.hssf.usermodel.HSSFHeader.date;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
  *
- * @author DELL PRCISION 3551
+ * @author tchet
  */
 public class ClientInfoController implements Initializable {
 
@@ -217,14 +216,14 @@ public class ClientInfoController implements Initializable {
     }
      private void load() {
        
-        //ClientInfo cl=new ClientInfo();
+        ClientInfo cl=new ClientInfo();
             ClientInfoService cls = new ClientInfoService();
             ObservableList<ClientInfo> list = cls.getAll();
              System.out.println(list);
            
-    nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));   
-    prenom_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,String>("prenom"));
-    email_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,String>("email"));
+   nom_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,String>("nom"));   
+   prenom_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,String>("prenom"));
+   email_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,String>("email"));
     adress_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,String>("adress"));
     tel_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,Integer>("tel"));
     points_col.setCellValueFactory(new PropertyValueFactory<ClientInfo,Integer>("points"));
@@ -348,7 +347,7 @@ if (alert.getResult() == ButtonType.YES) {
 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sur about the procedure", ButtonType.YES, ButtonType.NO);
 alert.showAndWait();
 if (alert.getResult() == ButtonType.YES){
-    String file_name="C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1\\ClientInfo.pdf";
+    String file_name="C:\\Users\\tchet\\Desktop\\ClientInfo.pdf";
         Document document =new Document() {};
         try {
             
