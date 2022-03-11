@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Crud_menuController">
+   <children>
+      <ImageView fitHeight="702.0" fitWidth="1036.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/272281762_468075401675831_7085673617812537326_n.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#8a2f2f" layoutX="273.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion menu" wrappingWidth="452.70263671875">
+         <font>
+            <Font name="System Bold Italic" size="64.0" />
+         </font>
+      </Text>
+      <Label layoutX="77.0" layoutY="185.0" text="Description" />
+      <Label layoutX="74.0" layoutY="236.0" text="NomPlat" />
+      <Label layoutX="73.0" layoutY="284.0" text="Image" />
+      <Label layoutX="68.0" layoutY="341.0" text="Nomcategorie" />
+      <Label layoutX="75.0" layoutY="380.0" text="Prix_plat" />
+      <Label layoutX="74.0" layoutY="437.0" text="q_plat" />
+      <Label layoutX="76.0" layoutY="485.0" text="Stock" />
+      <TextField fx:id="descp" layoutX="182.0" layoutY="180.0" promptText="description" />
+      <TextField fx:id="nompp" layoutX="182.0" layoutY="221.0" promptText="nom plat" />
+      <TextField fx:id="imageeep" layoutX="182.0" layoutY="279.0" promptText="upload" />
+      <TextField fx:id="prixplattt" layoutX="182.0" layoutY="386.0" promptText="prix plat" />
+      <TextField fx:id="quantiteee" layoutX="182.0" layoutY="432.0" promptText="quantité" />
+      <TextField fx:id="stockkk" layoutX="182.0" layoutY="480.0" promptText="Stock" />
+      <TableView fx:id="calltabmenu" layoutX="385.0" layoutY="205.0" onMouseClicked="#onclikedd" prefHeight="200.0" prefWidth="601.0">
+        <columns>
+          <TableColumn fx:id="collidp" minWidth="0.0" prefWidth="0.0" text="Id plat" />
+          <TableColumn fx:id="colldescrp" prefWidth="104.0" text="Description" />
+            <TableColumn fx:id="collnomplatt" prefWidth="84.0" text="Nomplat" />
+            <TableColumn fx:id="callimage" prefWidth="70.0" text="image" />
+            <TableColumn fx:id="callidcat" prefWidth="109.0" text="nom categorie" />
+            <TableColumn fx:id="callprixplat" prefWidth="83.0" text="prix plat" />
+            <TableColumn fx:id="callq_plat" prefWidth="75.0" text="quantité plat" />
+            <TableColumn fx:id="callstock" prefWidth="75.0" text="Stock" />
+        </columns>
+      </TableView>
+      <Button layoutX="465.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#ajouterplat" text="Ajouter" />
+      <Button layoutX="634.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#modifierplat" text="Modifier" />
+      <Button layoutX="816.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#supprimerpalt" text="Supprimer" />
+      <TextField fx:id="rechercher" layoutX="778.0" layoutY="157.0" onKeyReleased="#rechercher" promptText="Rechercher" />
+      <JFXComboBox fx:id="idddccaatttppp" layoutX="182.0" layoutY="325.0" prefHeight="31.0" prefWidth="187.0" />
+      <Button fx:id="cleear" layoutX="197.0" layoutY="526.0" mnemonicParsing="false" onMouseClicked="#cleear" prefHeight="31.0" prefWidth="76.0" text="Clear" />
+      <FontAwesomeIconView fx:id="homegestmenuuuu" glyphName="HOME" layoutX="25.0" layoutY="65.0" onMouseClicked="#homegestioonmenuuu" size="60" wrappingWidth="57.999998331069946" />
+      <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="769.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/249586776_1006672123522883_6323310930610050706_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="424.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/273005573_5036077613097392_6831833910378070497_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="583.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/273888997_1163388077740325_3031392608565865759_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="117.0" fitWidth="167.0" layoutX="797.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/274718304_691483915205947_4536177148937474099_n.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

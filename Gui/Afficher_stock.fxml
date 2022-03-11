@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Afficher_stockController">
+   <children>
+      <ImageView fitHeight="813.0" fitWidth="1143.0" layoutX="-27.0" layoutY="-51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fcefda8549f3ea4c7f14e1747c45e8b5.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tablestock" layoutX="29.0" layoutY="434.0" onMouseClicked="#handleMouseAction" onMousePressed="#modifier" prefHeight="296.0" prefWidth="842.0">
+        <columns>
+          <TableColumn fx:id="idfCol" prefWidth="120.0" text="Nom Fournisseur" />
+            <TableColumn fx:id="nomsCol" prefWidth="120.0" text="Nom Produit" />
+            <TableColumn fx:id="dajoutCol" prefWidth="120.0" text="Date d'ajout" />
+            <TableColumn fx:id="dfinCol" prefWidth="120.0" text="Valide jusqu'a" />
+            <TableColumn fx:id="prixsCol" prefWidth="120.0" text="Prix Unitaire" />
+            <TableColumn fx:id="qtsCol" prefWidth="240.0" text="Quantité" />
+            <TableColumn fx:id="idsCol" minWidth="0.0" prefWidth="0.0" text="Id produit" />
+        </columns>
+      </TableView>
+      <Label layoutX="175.0" layoutY="38.0" prefHeight="53.0" prefWidth="447.0" text="Liste des Produits en Stock" textAlignment="CENTER" textFill="#ab1609">
+         <font>
+            <Font name="Bauhaus 93" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="find" layoutX="29.0" layoutY="387.0" onKeyReleased="#rechercher" prefHeight="33.0" prefWidth="162.0" promptText="Rechercher" />
+      <TextField fx:id="nom" layoutX="175.0" layoutY="168.0" />
+      <TextField fx:id="prix" layoutX="176.0" layoutY="273.0" />
+      <Label layoutX="82.0" layoutY="172.0" text="Nom" />
+      <Label layoutX="82.0" layoutY="215.0" text="Date ajout" />
+      <Label layoutX="375.0" layoutY="224.0" text="Date fin " />
+      <Label layoutX="82.0" layoutY="277.0" text="Prix unitair" />
+      <Label layoutX="374.0" layoutY="277.0" text="Quantité" />
+      <TextField fx:id="qt" layoutX="467.0" layoutY="273.0" />
+      <Label layoutX="375.0" layoutY="172.0" text="Id fournisseur" />
+      <Button fx:id="ajout" layoutX="710.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#Ajouter" text="Ajouter" />
+      <JFXDatePicker fx:id="daaaatea" layoutX="175.0" layoutY="216.0" prefHeight="25.0" prefWidth="149.0" />
+      <JFXDatePicker fx:id="daaaatef" layoutX="467.0" layoutY="223.0" prefHeight="25.0" prefWidth="149.0" />
+      <Button fx:id="ajout1" layoutX="707.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#Clear" text="Clear" />
+      <ComboBox fx:id="cbidf" layoutX="467.0" layoutY="168.0" prefWidth="150.0" />
+      <Button layoutX="720.0" layoutY="181.0" mnemonicParsing="false" onAction="#update" text="Modifier" />
+      <FontAwesomeIconView glyphName="HOME" layoutX="14.0" layoutY="67.0" onMouseClicked="#GoHome" size="60" />
+      <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="876.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/x-button.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="1026.0" layoutY="759.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button fx:id="ajout3" layoutX="935.0" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="25.0" prefWidth="73.0" text="Supprimer" />
+      <ImageView fitHeight="33.0" fitWidth="27.0" layoutX="674.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/cleaning.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="27.0" layoutX="675.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/add-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="41.0" layoutX="674.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/edit.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="ajout31" layoutX="935.0" layoutY="608.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Print" />
+      <FontAwesomeIconView glyphName="PRINT" layoutX="873.0" layoutY="638.0" onMouseClicked="#PDF" size="50" />
+      <Button layoutX="935.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#trier" text="trier par nom" />
+      <FontAwesomeIconView glyphName="REFRESH" layoutX="232.0" layoutY="417.0" onMouseClicked="#refreshh" size="40" />
+      <FontAwesomeIconView glyphName="SORT" layoutX="885.0" layoutY="460.0" size="40" />
+      <Button fx:id="ajout311" layoutX="935.0" layoutY="685.0" mnemonicParsing="false" onMouseClicked="#excel" prefHeight="25.0" prefWidth="73.0" text="Excel" />
+      <ImageView fx:id="image" fitHeight="197.0" fitWidth="286.0" layoutX="834.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/274718304_691483915205947_4536177148937474099_n.png" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView fill="#ab1609" glyphName="CLOSE" layoutX="1072.0" layoutY="41.0" onMouseClicked="#close" size="32.0" text="" wrappingWidth="25.428571701049805" />
+      <Button layoutX="352.0" layoutY="391.0" mnemonicParsing="false" onAction="#barecode" text="Generate BareCode" />
+   </children>
+</AnchorPane>
