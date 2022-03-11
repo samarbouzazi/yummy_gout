@@ -112,6 +112,17 @@ public class platt {
         this.Descplat = Descplat;
     }
 
+    public platt(int Idplat, String Descplat, String Nomplat, String image, int prix_plat, int q_plat, int stock) {
+        this.Idplat = Idplat;
+        this.Descplat = Descplat;
+        this.Nomplat = Nomplat;
+        this.image = image;
+        this.prix_plat = prix_plat;
+        this.q_plat = q_plat;
+        this.stock = stock;
+    }
+   
+
     public void setNomplat(String Nomplat) {
         this.Nomplat = Nomplat;
     }

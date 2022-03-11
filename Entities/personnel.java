@@ -26,7 +26,74 @@ public class personnel {
      Date Date_embauche ; 
      int taux_horaire; 
      float prime ;
+     String image ;
 
+    public String getImage() {
+        return image;
+    }
+
+    public personnel(int Idp, String nomp, String prenomp, String cinp, String telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche, int taux_horaire, float prime, String image) {
+        this.Idp = Idp;
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
+        this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
+        this.taux_horaire = taux_horaire;
+        this.prime = prime;
+        this.image = image;
+    }
+
+    public personnel(String nomp, String prenomp, String cinp, String telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche, int taux_horaire, String image) {
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
+        this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
+        this.taux_horaire = taux_horaire;
+        this.image = image;
+    }
+
+    public personnel(int Idp, String nomp, String prenomp, String cinp, String telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche, int taux_horaire, String image) {
+        this.Idp = Idp;
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
+        this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
+        this.taux_horaire = taux_horaire;
+        this.image = image;
+    }
+
+    public personnel(int Idp, String nomp, String prenomp, String cinp, String telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche, String image) {
+        this.Idp = Idp;
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
+        this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
+        this.image = image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     public personnel(String nomp, String prenomp, int Salaire, int nbheure, int taux_horaire, float prime) {
         this.nomp = nomp;
         this.prenomp = prenomp;
@@ -87,6 +154,19 @@ public class personnel {
         this.nbheure = nbheure;
         this.Date_embauche = Date_embauche;
         this.taux_horaire = taux_horaire;
+    }
+
+    public personnel(String nomp, String prenomp, String cinp, String telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche, String image) {
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.cinp = cinp;
+        this.telp = telp;
+        this.email = email;
+        this.Salaire = Salaire;
+        this.Specialite = Specialite;
+        this.nbheure = nbheure;
+        this.Date_embauche = Date_embauche;
+        this.image = image;
     }
 
     public personnel(int Idp, String nomp, String prenomp, String cinp, String telp, String email, int Salaire, String Specialite, int nbheure, Date Date_embauche, int taux_horaire, float prime) {
@@ -222,9 +302,10 @@ public class personnel {
 
     @Override
     public String toString() {
-        return "personnel{" + "Idp=" + Idp + ", nomp=" + nomp + ", prenomp=" + prenomp + ", cinp=" + cinp + ", telp=" + telp + ", email=" + email + ", Salaire=" + Salaire + ", Specialite=" + Specialite + ", nbheure=" + nbheure + ", Date_embauche=" + Date_embauche + ", taux_horaire=" + taux_horaire + ", prime=" + prime + '}';
+        return "personnel{" + "Idp=" + Idp + ", nomp=" + nomp + ", prenomp=" + prenomp + ", cinp=" + cinp + ", telp=" + telp + ", email=" + email + ", Salaire=" + Salaire + ", Specialite=" + Specialite + ", nbheure=" + nbheure + ", Date_embauche=" + Date_embauche + ", taux_horaire=" + taux_horaire + ", prime=" + prime + ", image=" + image + '}';
     }
 
+   
     
   
     
