@@ -67,17 +67,12 @@
             <TableColumn fx:id="colliv" prefWidth="117.0" text="Nom livreur" />
             <TableColumn fx:id="colprenom" minWidth="0.0" prefWidth="126.0" text="Prenom livreur" />
             <TableColumn fx:id="coldelegation" minWidth="0.0" prefWidth="130.0" text="Delegation" />
-            <TableColumn fx:id="colidplat" minWidth="0.0" prefWidth="93.0" text="Idplat" />
-            <TableColumn fx:id="colclient" minWidth="0.0" prefWidth="106.0" text="Nom client" />
-            <TableColumn fx:id="colprenomclient" minWidth="0.0" prefWidth="118.0" text="Prenom client" />
-            <TableColumn fx:id="coltelclt" minWidth="0.0" prefWidth="109.0" text="Télephone" />
+            <TableColumn fx:id="colidplat" minWidth="0.0" prefWidth="0.0" text="Idplat" />
+            <TableColumn fx:id="colclient" minWidth="0.0" prefWidth="156.0" text="Nom client" />
+            <TableColumn fx:id="colprenomclient" minWidth="0.0" prefWidth="148.0" text="Prenom client" />
+            <TableColumn fx:id="coltelclt" minWidth="0.0" prefWidth="122.0" text="Télephone" />
          </columns>
       </TableView>
-      <ImageView fitHeight="337.0" fitWidth="414.0" layoutX="-19.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/272328160_814440549515136_7364603113227427322_n.png" />
-         </image>
-      </ImageView>
       <Button fx:id="tri" layoutX="572.0" layoutY="608.0" mnemonicParsing="false" onAction="#trier" prefHeight="31.0" prefWidth="187.0" text="Trier par date" />
       <Button fx:id="actualiser" layoutX="634.0" layoutY="194.0" mnemonicParsing="false" onAction="#actualiser" prefHeight="31.0" prefWidth="144.0" text="Actualiser" />
       <Button fx:id="supp" layoutX="410.0" layoutY="194.0" mnemonicParsing="false" onAction="#supprimerliv" prefHeight="20.0" prefWidth="94.0" text="Supprimer" />

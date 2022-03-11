@@ -6,10 +6,18 @@
 package Gui;
 
 import Services.BrancheService;
+import Services.Scontrol_1;
 import Services.Scontrol_amani;
+import com.itextpdf.text.Image;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import Entities.Branche;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -17,7 +25,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalTime;
 import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,11 +48,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
+import javafx.scene.image.ImageView;
 import Tools.MaConnexion;
-import java.time.LocalTime;
+
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -101,9 +116,22 @@ public class AjouterBrancheController implements Initializable {
     Connection cnx= MaConnexion.getInstance().getCnx();
     @FXML
     private Button supp;
-    
     @FXML
     private FontAwesomeIconView home;
+    @FXML
+    private Button actualiser;
+    @FXML
+    private ImageView tri;
+    @FXML
+    private JFXButton trierr;
+    @FXML
+    private TextField imageb;
+    @FXML
+    private ImageView imagev;
+    @FXML
+    private Button uploadaaa;
+    @FXML
+    private TableColumn<?, ?> callimage;
     /**
      * Initializes the controller class.
      */
@@ -140,11 +168,10 @@ public class AjouterBrancheController implements Initializable {
                 "46","47","48","49","50","51","52","53","54","55","56","57","58","59");
         minferm.setItems(listMinF);
         loadbranch();
-        //idb.setEditable(false);
         // TODO
     }    
 
-     @FXML
+    @FXML
     private void AjouterBranche(MouseEvent event) throws SQLException {
         String nombranche= nomb.getText();
         String Contact= contact.getText();
@@ -155,13 +182,13 @@ public class AjouterBrancheController implements Initializable {
         String heurefermeture= heureferm.getValue();
         String Minfermeture= minferm.getValue();
         String time2= heurefermeture+":"+Minfermeture;
-        Branche b= new Branche(nombranche,Contact, Emplacement,time, time2);
-         LocalTime t1 = LocalTime.parse(time);
+        Branche b= new Branche(nombranche,Contact, Emplacement,time, time2,imageb.getText());
+        LocalTime t1 = LocalTime.parse(time);
         LocalTime t2 = LocalTime.parse(time2);
-        BrancheService bs=new BrancheService();
+        BrancheService bs=new BrancheService(); 
         Scontrol_amani sc= new Scontrol_amani();
         if (bs.exist(b)==0){
-            Alert alert1 =new Alert(Alert.AlertType.WARNING);          
+            Alert alert1 =new Alert(Alert.AlertType.WARNING);           
             if(nomb.getText().isEmpty()||heureouv.getSelectionModel().getSelectedItem().equals("")|| minouv.getSelectionModel().getSelectedItem().equals("")|| heureferm.getSelectionModel().getSelectedItem().equals("")||minferm.getSelectionModel().getSelectedItem().equals("")){
              alert1.setContentText("Il y a des champs vides !");
             alert1.showAndWait();
@@ -170,7 +197,7 @@ public class AjouterBrancheController implements Initializable {
                 alert1.setContentText("Le contact est invalide !");
             alert1.showAndWait();
             }
-            else if (!sc.Controlechar(b)){            
+            else if (!sc.Controlechar(b)){             
             //alert.setHeaderText("null");
             alert1.setContentText("Le nom est invalide");
             alert1.showAndWait();
@@ -192,6 +219,7 @@ public class AjouterBrancheController implements Initializable {
             Alert alert1 =new Alert(Alert.AlertType.WARNING);
             alert1.setContentText("Branche existe");
             alert1.showAndWait();}}
+
     @FXML
     private void close(MouseEvent event) {
          Alert alert =new Alert (Alert.AlertType.CONFIRMATION);
@@ -205,8 +233,6 @@ public class AjouterBrancheController implements Initializable {
 
     @FXML
     private void Vider() {
-        //idb.setText(null);
-        Recherche.setText(null);
         nomb.setText(null);
         contact.setText(null);
         emplacement.setText(null);
@@ -228,7 +254,8 @@ public class AjouterBrancheController implements Initializable {
                         resultSet.getString("Contact"),
                         resultSet.getString("Emplacement"),
                         resultSet.getString("Heureo"),
-                        resultSet.getString("Heuref")
+                        resultSet.getString("Heuref"),
+                          resultSet.getString("image")
                         )); 
                listebranche.setItems(listeb);
             }
@@ -246,26 +273,26 @@ public class AjouterBrancheController implements Initializable {
     cont.setCellValueFactory(new PropertyValueFactory<>("Contact"));
     emp.setCellValueFactory(new PropertyValueFactory<>("Emplacement"));
     Houvert.setCellValueFactory(new PropertyValueFactory<>("Heureo"));
-    Hferm.setCellValueFactory(new PropertyValueFactory<>("Heuref"));   
+    Hferm.setCellValueFactory(new PropertyValueFactory<>("Heuref")); 
+    callimage.setCellValueFactory(new PropertyValueFactory<>("image"));
 
     }   
 
-    @FXML
-    private void selectrow() {
-    Branche b=listebranche.getSelectionModel().getSelectedItem();
-    //idb.setText(String.valueOf(b.getIdbranche()));
-    nomb.setText(String.valueOf(b.getNomBranche()));
-    contact.setText(String.valueOf(b.getContact()));
-    emplacement.setText(String.valueOf(b.getEmplacement()));
-    String HH= b.getHeureo().substring(0, 2);
-    String MM=b.getHeureo().substring(3);
-    heureouv.setValue(HH);
-    minouv.setValue(MM);
-    String HHf= b.getHeuref().substring(0, 2);
-    String MMf=b.getHeuref().substring(3);
-    heureferm.setValue(HHf);
-    minferm.setValue(MMf);   
-    }
+//    @FXML
+//    private void selectrow() {
+//    Branche b=listebranche.getSelectionModel().getSelectedItem();
+//    nomb.setText(String.valueOf(b.getNomBranche()));
+//    contact.setText(String.valueOf(b.getContact()));
+//    emplacement.setText(String.valueOf(b.getEmplacement()));
+//    String HH= b.getHeureo().substring(0, 2);
+//    String MM=b.getHeureo().substring(3);
+//    heureouv.setValue(HH);
+//    minouv.setValue(MM);
+//    String HHf= b.getHeuref().substring(0, 2);
+//    String MMf=b.getHeuref().substring(3);
+//    heureferm.setValue(HHf);
+//    minferm.setValue(MMf);   
+//    }
 
     @FXML
     private void supprimer(ActionEvent event) {
@@ -300,23 +327,26 @@ public class AjouterBrancheController implements Initializable {
             alert.setContentText("il faut séléctionner une ligne");
             alert.showAndWait();}
     }
-       private void handleMouseAction(MouseEvent event)
-       {
-           Branche b=listebranche.getSelectionModel().getSelectedItem();
-    //idb.setText(String.valueOf(b.getIdbranche()));
-    nomb.setText(String.valueOf(b.getNomBranche()));
-    contact.setText(String.valueOf(b.getContact()));
-    emplacement.setText(String.valueOf(b.getEmplacement()));
-    String HH= b.getHeureo().substring(0, 2);
-    String MM=b.getHeureo().substring(3);
-    heureouv.setValue(HH);
-    minouv.setValue(MM);
-    String HHf= b.getHeuref().substring(0, 2);
-    String MMf=b.getHeuref().substring(3);
-    heureferm.setValue(HHf);
-    minferm.setValue(MMf);  
-       }
-   @FXML
+//       private void handleMouseAction(MouseEvent event)
+//       {
+////    Branche b=listebranche.getSelectionModel().getSelectedItem();
+////    nomb.setText(String.valueOf(b.getNomBranche()));
+////    contact.setText(String.valueOf(b.getContact()));
+////    emplacement.setText(String.valueOf(b.getEmplacement()));
+////    String HH= b.getHeureo().substring(0, 2);
+////    String MM=b.getHeureo().substring(3);
+////    heureouv.setValue(HH);
+////    minouv.setValue(MM);
+////    String HHf= b.getHeuref().substring(0, 2);
+////    String MMf=b.getHeuref().substring(3);
+////    heureferm.setValue(HHf);
+////    minferm.setValue(MMf);  
+//////    String path = b.getImage();
+//////    File file=new File(path);
+//////    javafx.scene.image.Image img = new javafx.scene.image.Image(file.toURI().toString());
+//////    imagev.setImage(img);
+//       }
+    @FXML
    void modifier(ActionEvent event) throws SQLException  {
         Branche br=new Branche();
         BrancheService bs = new BrancheService();
@@ -334,9 +364,9 @@ public class AjouterBrancheController implements Initializable {
         String time2= heurefermeture+":"+Minfermeture;
         LocalTime t1 = LocalTime.parse(time);
         LocalTime t2 = LocalTime.parse(time2);
-        Scontrol_amani sc= new Scontrol_amani();      
+        Scontrol_amani sc= new Scontrol_amani();       
          if (bs.exist(br)==0){
-            Alert alert1 =new Alert(Alert.AlertType.WARNING);          
+            Alert alert1 =new Alert(Alert.AlertType.WARNING);           
             if(nomb.getText().isEmpty()||heureouv.getSelectionModel().getSelectedItem().equals("")|| minouv.getSelectionModel().getSelectedItem().equals("")|| heureferm.getSelectionModel().getSelectedItem().equals("")||minferm.getSelectionModel().getSelectedItem().equals("")){
              alert1.setContentText("Il y a des champs vides !");
             alert1.showAndWait();
@@ -345,7 +375,7 @@ public class AjouterBrancheController implements Initializable {
                 alert1.setContentText("Le contact est invalide !");
             alert1.showAndWait();
             }
-            else if (!sc.Controlechar(br)){            
+            else if (!sc.Controlechar(br)){             
             //alert.setHeaderText("null");
             alert1.setContentText("Le nom est invalide");
             alert1.showAndWait();
@@ -356,14 +386,19 @@ public class AjouterBrancheController implements Initializable {
             alert2.setContentText("Vérifier les heures d'ouverture et de fermeture");
             alert2.showAndWait();
                     }
-            else{
-                bs.modifier(br);  
+            else{ 
+                bs.modifier(br);   
         loadbranch();
          refresh();
-         Vider();              
+         Vider();               
         alert1.setContentText("Branche est modifiée avec succes");
-            }
-         }
+        alert1.showAndWait();            
+        }
+        }
+        else{
+            Alert alert1 =new Alert(Alert.AlertType.WARNING);
+            alert1.setContentText("Branche existe");
+            alert1.showAndWait();}
    }
    private void populateTable(ObservableList<Branche> branlist){
        listebranche.setItems(branlist);
@@ -386,12 +421,82 @@ public class AjouterBrancheController implements Initializable {
     }
 
     @FXML
-    private void Actualiserr(ActionEvent event) {
-        loadbranch();
+    private void actualiserrr(ActionEvent event) {
         refresh();
     }
 
-}
+    @FXML
+    private void trierparheure(ActionEvent event) {
+        BrancheService ps=new BrancheService();
+        Branche b= new Branche();
+        ObservableList<Branche>filter= ps.TriLivraison();
+        populateTable(filter);
+    }
+
+    @FXML
+    private void upload(ActionEvent event) throws FileNotFoundException, IOException {
+            Random rand = new Random();
+        int x = rand.nextInt(1000);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload File Path");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File file = fileChooser.showOpenDialog(null);
+        String DBPath = "C:\\\\wamp64\\\\www\\\\Yummygoutt\\\\branche\\\\"+ "branche"  + x + ".jpg";
+    
+        if (file != null) {
+            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+            BufferedInputStream bin = new BufferedInputStream(Fsource);
+            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+            System.out.println(file.getAbsoluteFile());
+            String path=file.getAbsolutePath();
+            javafx.scene.image.Image img = new javafx.scene.image.Image(file.toURI().toString());
+            imagev.setImage(img);
+           /* File File1 = new File(DBPath);
+            Image img = new Image(File1.getAbsolutePath());
+            image_event.setImage(img);*/
+            imageb.setText(DBPath);
+            int b = 0;
+            while (b != -1) {
+                b = bin.read();
+                bou.write(b);
+            }
+            bin.close();
+            bou.close();
+            
+        } else {
+            System.out.println("error");
+
+        }
+    }
+
+    @FXML
+    private void handleMouseActionnnnn(MouseEvent event) {
+        
+         Branche b=listebranche.getSelectionModel().getSelectedItem();
+    nomb.setText(String.valueOf(b.getNomBranche()));
+    contact.setText(String.valueOf(b.getContact()));
+    emplacement.setText(String.valueOf(b.getEmplacement()));
+    String HH= b.getHeureo().substring(0, 2);
+    String MM=b.getHeureo().substring(3);
+    heureouv.setValue(HH);
+    minouv.setValue(MM);
+    String HHf= b.getHeuref().substring(0, 2);
+    String MMf=b.getHeuref().substring(3);
+    heureferm.setValue(HHf);
+    minferm.setValue(MMf);  
+    String path = b.getImage();
+    File file=new File(path);
+    javafx.scene.image.Image img = new javafx.scene.image.Image(file.toURI().toString());
+    imagev.setImage(img);
+    }
+
+    }
+
+   
+
+
 
    
     

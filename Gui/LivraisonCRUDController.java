@@ -5,6 +5,11 @@
  */
 package Gui;
 
+import ClickSend.Api.SmsApi;
+import ClickSend.ApiClient;
+import ClickSend.ApiException;
+import ClickSend.Model.SmsMessage;
+import ClickSend.Model.SmsMessageCollection;
 import Services.LivraisonService;
 import Services.LivraisonServicee;
 import com.jfoenix.controls.JFXButton;
@@ -45,6 +50,9 @@ import javax.mail.internet.AddressException;
 import org.controlsfx.control.Notifications;
 import Tools.MaConnexion;
 import Tools.mailing_amani;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * FXML Controller class
@@ -102,6 +110,8 @@ public class LivraisonCRUDController implements Initializable {
     private TableColumn<?, ?> colidplat;
     @FXML
     private JFXComboBox<String> numfacture;
+    @FXML
+    private Button smsss;
     /**
      * Initializes the controller class.
      */
@@ -118,19 +128,20 @@ public class LivraisonCRUDController implements Initializable {
     @FXML
     private void AjouterLivraison(MouseEvent event) throws SQLException {         
         LivraisonService ls= new LivraisonService();
-        LivraisonServicee lse= new LivraisonServicee();
+        //LivraisonServicee lse= new LivraisonServicee();
                 String facturee= numfacture.getValue();
                 int idpanier=ls.chercherIdpanier(facturee);
                 String adresse=ls.getadr(idpanier); 
-                int ide=lse.ReturnIdLivreur();
+                int ide= ls.ReturnIdLivreur(idpanier);
             Livraison l1= new Livraison(idpanier, ide);
-                lse.ajouter(l1);  
+                ls.ajouter(l1);  
                 ls.modifierDispoLivreur(ide);
                 refresh();
                Alert alert =new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("Livraison ajoutée");
                 alert.showAndWait();
-                ls.modifierDispoLivreur(ide);}
+                envoyersms();
+                }
     
     @FXML
     private void close(MouseEvent event) {
@@ -273,4 +284,33 @@ public class LivraisonCRUDController implements Initializable {
               stage.show();
     }
 
-}
+    private void envoyersms(){
+         int num=93863919;
+        
+        
+        ApiClient defaultClient = new ApiClient();
+        defaultClient.setUsername("samar.bouzezi@esprit.tn");
+        defaultClient.setPassword("80F5AB45-8424-636D-A60E-F0017BF442DE");
+        SmsApi apiInstance = new SmsApi(defaultClient);
+
+        SmsMessage smsMessage = new SmsMessage();
+        smsMessage.body("la livraison est en attente voulez consulter le service livraison" );
+        smsMessage.to("+216"+num);
+        smsMessage.source("reservation");
+        
+
+        List<SmsMessage> smsMessageList = Arrays.asList(smsMessage);
+        // SmsMessageCollection | SmsMessageCollection model
+        SmsMessageCollection smsMessages = new SmsMessageCollection();
+        smsMessages.messages(smsMessageList);
+        try {
+            String result = apiInstance.smsSendPost(smsMessages);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#smsSendPost");
+            e.printStackTrace();
+        }
+        }
+    }
+
+
