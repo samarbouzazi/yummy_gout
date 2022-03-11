@@ -45,8 +45,8 @@
       <FontAwesomeIconView fx:id="close" glyphName="CLOSE" layoutX="1006.0" layoutY="31.0" onMouseClicked="#close" size="20" text="" wrappingWidth="16.714285850524902" />
 
       <Button layoutX="378.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#ajouter" prefHeight="31.0" prefWidth="200.0" text="Ajouter" />
-      <Button layoutX="382.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#supp" prefHeight="31.0" prefWidth="200.0" text="supprimer" />
-      <Button fx:id="modifierrrrrrr" layoutX="376.0" layoutY="164.0" mnemonicParsing="false" onAction="#update" onMouseClicked="#modifier" prefHeight="31.0" prefWidth="200.0" text="modifier" />
+      <Button layoutX="382.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#supp" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #DF9F9E;" text="supprimer" />
+      <Button fx:id="modifierrrrrrr" layoutX="376.0" layoutY="164.0" mnemonicParsing="false" onAction="#update" onMouseClicked="#modifier" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #DF9F9E;" text="modifier" />
       <Button layoutX="904.0" layoutY="694.0" mnemonicParsing="false" onAction="#trier" prefHeight="56.0" prefWidth="125.0" text="trier" />
       <TextField fx:id="Recherche" layoutX="842.0" layoutY="416.0" onKeyReleased="#rechercher" />
       <FontAwesomeIconView glyphName="HOME" layoutX="41.0" layoutY="71.0" onMouseClicked="#home" size="55" text="" wrappingWidth="11.142857551574707" />
@@ -58,21 +58,6 @@
       <ImageView fitHeight="44.0" fitWidth="24.0" layoutX="392.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/273005573_5036077613097392_6831833910378070497_n.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="31.0" layoutX="384.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/home/249586776_1006672123522883_6323310930610050706_n.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="150.0" layoutX="379.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/home/274004864_1580599505660203_3488215426085879374_n.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="44.0" layoutX="413.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/home/273888997_1163388077740325_3031392608565865759_n.png" />
          </image>
       </ImageView>
       <Button layoutX="41.0" layoutY="694.0" mnemonicParsing="false" onAction="#pdf" prefHeight="56.0" prefWidth="133.0" text="Pdf" />
@@ -89,5 +74,31 @@
       </ImageView>
       <Button fx:id="iconn_importtt" layoutX="308.0" layoutY="272.0" mnemonicParsing="false" onAction="#uploaddd" text="upload" />
       <ImageView fx:id="imgvieww" fitHeight="150.0" fitWidth="200.0" layoutX="664.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="675.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/cleaning.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="42.0" layoutX="675.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="675.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/add-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="542.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/x-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="858.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tap.png" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView glyphName="SORT" layoutX="874.0" layoutY="612.0" size="40" />
    </children>
 </AnchorPane>

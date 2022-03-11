@@ -5,6 +5,11 @@
  */
 package Gui;
 
+import ClickSend.Api.SmsApi;
+import ClickSend.ApiClient;
+import ClickSend.ApiException;
+import ClickSend.Model.SmsMessage;
+import ClickSend.Model.SmsMessageCollection;
 import Tools.MaConnexion;
 import com.jfoenix.controls.JFXTextArea;
 
@@ -22,6 +27,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -249,7 +256,7 @@ if (alert.getResult() == ButtonType.YES) {
    
          if(! descriptionavis.isEmpty()){
         aa.ajouter(ppp);
-        
+        sms(idclientt.getValue());
        
         refreshTable();
         BadWords bw=new BadWords();
@@ -325,6 +332,36 @@ if (alert.getResult() == ButtonType.YES) {
    rs.modifier(r);
    load(); 
     }
+    void sms(String idclientt)
+    {
+       
+        int num=99245400;
+        
+        
+        ApiClient defaultClient = new ApiClient();
+        defaultClient.setUsername("samar.bouzezi@esprit.tn");
+        defaultClient.setPassword("80F5AB45-8424-636D-A60E-F0017BF442DE");
+        SmsApi apiInstance = new SmsApi(defaultClient);
+
+        SmsMessage smsMessage = new SmsMessage();
+        smsMessage.body("avis de  '"+idclientt+"' a été ajouté avec succes" );
+        smsMessage.to("+216"+num);
+        smsMessage.source("reservation");
+        
+
+        List<SmsMessage> smsMessageList = Arrays.asList(smsMessage);
+        // SmsMessageCollection | SmsMessageCollection model
+        SmsMessageCollection smsMessages = new SmsMessageCollection();
+        smsMessages.messages(smsMessageList);
+        try {
+            String result = apiInstance.smsSendPost(smsMessages);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#smsSendPost");
+            e.printStackTrace();
+        }
+    }
+    
     
                 } 
 //@FXML
