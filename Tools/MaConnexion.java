@@ -5,25 +5,24 @@
  */
 package tools;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 /**
  *
- * @author Fayechi
+ * @author chaim
  */
-public class MaConnexion {
+public class Maconnexion {
+  
     
     private Connection cnx;
-    public String url="jdbc:mysql://localhost:3306/restaurantt";
+    public String url="jdbc:mysql://localhost:3306/restaurant";
     public String user="root";
     public String pwd ="";
-    private static MaConnexion mc;
+    private static Maconnexion mc;
 
-    private MaConnexion() {
+    private Maconnexion() {
         try {
             cnx=DriverManager.getConnection(url, user, pwd);
             System.out.println("Connexion etablie");
@@ -31,9 +30,9 @@ public class MaConnexion {
             System.out.println(ex.getMessage());
         }
     }
-    public static MaConnexion getInstance(){
+    public static Maconnexion getInstance(){
         if(mc==null)
-        mc = new MaConnexion();
+        mc = new Maconnexion();
         return mc;
     
 }
@@ -41,9 +40,6 @@ public class MaConnexion {
     public Connection getCnx() {
         return cnx;
     }
-    
-    
-    
     
     
 }
