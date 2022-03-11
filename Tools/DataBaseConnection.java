@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class DataBaseConnection {
         private Connection cn ;
 
-    private String url ="jdbc:mysql://localhost:3306/restaurant";
+    private String url ="jdbc:mysql://localhost:3306/yummyjava";
     public String username ="root";
     public  String pwd="";
     
