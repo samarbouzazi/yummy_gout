@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="205.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Gui.PrimeeController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutY="24.0" prefHeight="200.0" prefWidth="600.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@prime.css" />
+         </stylesheets>
+         <children>
+            <TableView fx:id="idpp" layoutY="52.0" prefHeight="200.0" prefWidth="600.0">
+               <columns>
+                  <TableColumn fx:id="idp1" prefWidth="75.0" text="Id" />
+                  <TableColumn fx:id="nom1" prefWidth="75.0" text="Nom" />
+                  <TableColumn fx:id="prenom1" prefWidth="75.0" text="Prenom" />
+                  <TableColumn fx:id="salaire1" prefWidth="75.0" text="Salaire" />
+                  <TableColumn fx:id="nb1" prefWidth="130.0" text="nombre d'heure" />
+                  <TableColumn fx:id="taux1" prefWidth="112.0" text="Taux horaire" />
+                  <TableColumn fx:id="prime1" prefWidth="57.0" text="Prime" />
+               </columns>
+            </TableView>
+            <TextField fx:id="iiddpp" layoutX="7.0" layoutY="8.0" promptText="entrer l'id" />
+            <Button fx:id="primer" layoutX="235.0" layoutY="8.0" mnemonicParsing="false" onAction="#Primer" prefHeight="31.0" prefWidth="112.0" text="Get Prime" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
