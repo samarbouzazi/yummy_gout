@@ -5,7 +5,7 @@
  */
 package Tools;
 
-import Entities.User;
+import Entities.User_1;
 
 /**
  *
@@ -13,6 +13,6 @@ import Entities.User;
  */
 public class CurrentSession {
     
-    static public  User userm = new User(1, "yummygout@gmail.com", "yummy*1999"); 
+    static public  User_1 userm = new User_1(1, "yummygout@gmail.com", "yummy*1999"); 
     
 }

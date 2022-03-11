@@ -393,8 +393,17 @@ void handleMouseAction(MouseEvent event)
    p.setSpecialite(Specialite);
    int nbheure=Integer.valueOf(txt_nbheure.getText());
    p.setNbheure(nbheure);
+   Pattern pattern = Pattern.compile(masque);
+   Matcher controler = pattern.matcher(txt_email.getText());
 //  Date Date_embauche=Date.valueOf(txt_date_embauche.getValue());
 //  p.setDate_embauche(Date_embauche);
+if( !controler.matches()||!sc.Controlechar1(p)||idnomp.getText().isEmpty()||!sc.Controlechar2(p)||txt_prenom.getText().isEmpty()||!sc.isNumeric(txt_cin.getText())||txt_cin.getText().length()!=8||!sc.isNumeric(txt_tel.getText())||txt_tel.getText().length()!=8||txt_email.getText().isEmpty()){
+            Alert alert =new Alert(Alert.AlertType.WARNING);
+            
+            alert.setContentText("verifier les champs");
+            alert.showAndWait();
+        }
+        else{
    ps.modifier(p);
     Notifications notificationBuild = Notifications.create()
                                       .title("Traitement Personnel ")
@@ -412,6 +421,7 @@ void handleMouseAction(MouseEvent event)
                               notificationBuild.show(); 
    loadperso(); 
    refresh();
+    }
     }
 private void populateTable(ObservableList<personnel> list){
        perso.setItems(list);
@@ -581,21 +591,21 @@ System.out.println("Your excel file has been generated!");
          personnel tab_Recselected = perso.getSelectionModel().getSelectedItem();
 
        
-       String an = String.valueOf(tab_Recselected.getNomp());
-       String ap=String.valueOf(tab_Recselected.getPrenomp());
+       //String an = String.valueOf(tab_Recselected.getNomp());
+       //String ap=String.valueOf(tab_Recselected.getPrenomp());
        String ac=String.valueOf(tab_Recselected.getCinp());
        String at=String.valueOf(tab_Recselected.getTelp());
-       String ae=String.valueOf(tab_Recselected.getEmail());
+       //String ae=String.valueOf(tab_Recselected.getEmail());
        String as=String.valueOf(tab_Recselected.getSalaire());
-       String ass =String.valueOf(tab_Recselected.getSpecialite());
+       //String ass =String.valueOf(tab_Recselected.getSpecialite());
        String anb=String.valueOf(tab_Recselected.getNbheure());
        String ath=String.valueOf(tab_Recselected.getTaux_horaire());
         pdf33 p = new pdf33();
-    p.add(tab_Recselected.getNomp(),an,ap,ac,at,ae,as,ass,anb,ath);
+    p.add("`"+tab_Recselected.getNomp()+"`.pdf",tab_Recselected.getNomp(),tab_Recselected.getPrenomp(),ac,at,tab_Recselected.getEmail(),as,tab_Recselected.getSpecialite(),anb,ath);
     
    try {
             String ax;
-            ax = "C:\\Users\\Smayra\\Desktop";
+            ax = "C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1";
             System.out.println(ax);
         File file = new File(ax);
         if (file.exists()){ 

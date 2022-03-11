@@ -42,6 +42,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import Tools.MaConnexion;
+import java.time.LocalTime;
 
 /**
  * FXML Controller class
@@ -100,10 +101,7 @@ public class AjouterBrancheController implements Initializable {
     Connection cnx= MaConnexion.getInstance().getCnx();
     @FXML
     private Button supp;
-    @FXML
-    private Button btnselect;
-    @FXML
-    private TextField idb;
+    
     @FXML
     private FontAwesomeIconView home;
     /**
@@ -142,11 +140,11 @@ public class AjouterBrancheController implements Initializable {
                 "46","47","48","49","50","51","52","53","54","55","56","57","58","59");
         minferm.setItems(listMinF);
         loadbranch();
-        idb.setEditable(false);
+        //idb.setEditable(false);
         // TODO
     }    
 
-    @FXML
+     @FXML
     private void AjouterBranche(MouseEvent event) throws SQLException {
         String nombranche= nomb.getText();
         String Contact= contact.getText();
@@ -158,21 +156,42 @@ public class AjouterBrancheController implements Initializable {
         String Minfermeture= minferm.getValue();
         String time2= heurefermeture+":"+Minfermeture;
         Branche b= new Branche(nombranche,Contact, Emplacement,time, time2);
-        //Branche b1=new Branche(Emplacement);
-        BrancheService bs=new BrancheService(); 
+         LocalTime t1 = LocalTime.parse(time);
+        LocalTime t2 = LocalTime.parse(time2);
+        BrancheService bs=new BrancheService();
         Scontrol_amani sc= new Scontrol_amani();
-        if( !sc.Controlechar(b)||nombranche.isEmpty()|| !sc.isNumeric(Contact) || Contact.length()!=8 || heureouv.getSelectionModel().getSelectedItem().equals("")|| minouv.getSelectionModel().getSelectedItem().equals("")|| heureferm.getSelectionModel().getSelectedItem().equals("")||minferm.getSelectionModel().getSelectedItem().equals("") || bs.exist(b)!=0){
-            Alert alert =new Alert(Alert.AlertType.WARNING);
+        if (bs.exist(b)==0){
+            Alert alert1 =new Alert(Alert.AlertType.WARNING);          
+            if(nomb.getText().isEmpty()||heureouv.getSelectionModel().getSelectedItem().equals("")|| minouv.getSelectionModel().getSelectedItem().equals("")|| heureferm.getSelectionModel().getSelectedItem().equals("")||minferm.getSelectionModel().getSelectedItem().equals("")){
+             alert1.setContentText("Il y a des champs vides !");
+            alert1.showAndWait();
+            }
+            else if(!sc.isNumeric(Contact)|| Contact.length()!=8){
+                alert1.setContentText("Le contact est invalide !");
+            alert1.showAndWait();
+            }
+            else if (!sc.Controlechar(b)){            
             //alert.setHeaderText("null");
-            alert.setContentText("verifier les champs");
-            alert.showAndWait();}
-        else{
-        bs.ajouter(b);
+            alert1.setContentText("Le nom est invalide");
+            alert1.showAndWait();
+        }
+            else if (t2.isBefore(t1)){
+            Alert alert2 =new Alert(Alert.AlertType.WARNING);
+            //alert.setHeaderText("null");
+            alert2.setContentText("Vérifier les heures d'ouverture et de fermeture");
+            alert2.showAndWait();
+                    }
+            else{ bs.ajouter(b);
         refresh();
         Vider();
+        alert1.setContentText("Branche est ajoutée avec succes");
+        alert1.showAndWait();            
         }
-    }
-
+        }
+        else{
+            Alert alert1 =new Alert(Alert.AlertType.WARNING);
+            alert1.setContentText("Branche existe");
+            alert1.showAndWait();}}
     @FXML
     private void close(MouseEvent event) {
          Alert alert =new Alert (Alert.AlertType.CONFIRMATION);
@@ -186,7 +205,8 @@ public class AjouterBrancheController implements Initializable {
 
     @FXML
     private void Vider() {
-        idb.setText(null);
+        //idb.setText(null);
+        Recherche.setText(null);
         nomb.setText(null);
         contact.setText(null);
         emplacement.setText(null);
@@ -233,7 +253,7 @@ public class AjouterBrancheController implements Initializable {
     @FXML
     private void selectrow() {
     Branche b=listebranche.getSelectionModel().getSelectedItem();
-    idb.setText(String.valueOf(b.getIdbranche()));
+    //idb.setText(String.valueOf(b.getIdbranche()));
     nomb.setText(String.valueOf(b.getNomBranche()));
     contact.setText(String.valueOf(b.getContact()));
     emplacement.setText(String.valueOf(b.getEmplacement()));
@@ -283,7 +303,7 @@ public class AjouterBrancheController implements Initializable {
        private void handleMouseAction(MouseEvent event)
        {
            Branche b=listebranche.getSelectionModel().getSelectedItem();
-    idb.setText(String.valueOf(b.getIdbranche()));
+    //idb.setText(String.valueOf(b.getIdbranche()));
     nomb.setText(String.valueOf(b.getNomBranche()));
     contact.setText(String.valueOf(b.getContact()));
     emplacement.setText(String.valueOf(b.getEmplacement()));
@@ -296,8 +316,8 @@ public class AjouterBrancheController implements Initializable {
     heureferm.setValue(HHf);
     minferm.setValue(MMf);  
        }
-    @FXML
-   void modifier(ActionEvent event)  {
+   @FXML
+   void modifier(ActionEvent event) throws SQLException  {
         Branche br=new Branche();
         BrancheService bs = new BrancheService();
         br=listebranche.getSelectionModel().getSelectedItem();
@@ -306,10 +326,44 @@ public class AjouterBrancheController implements Initializable {
         br.setEmplacement(emplacement.getText());
         br.setHeureo(heureouv.getValue()+":"+minouv.getValue());
         br.setHeuref(heureferm.getValue()+":"+minferm.getValue());
-       bs.modifier(br);   
+        String heureouverture= heureouv.getValue();
+        String Minouverture= minouv.getValue();
+        String time= heureouverture+":"+Minouverture;
+        String heurefermeture= heureferm.getValue();
+        String Minfermeture= minferm.getValue();
+        String time2= heurefermeture+":"+Minfermeture;
+        LocalTime t1 = LocalTime.parse(time);
+        LocalTime t2 = LocalTime.parse(time2);
+        Scontrol_amani sc= new Scontrol_amani();      
+         if (bs.exist(br)==0){
+            Alert alert1 =new Alert(Alert.AlertType.WARNING);          
+            if(nomb.getText().isEmpty()||heureouv.getSelectionModel().getSelectedItem().equals("")|| minouv.getSelectionModel().getSelectedItem().equals("")|| heureferm.getSelectionModel().getSelectedItem().equals("")||minferm.getSelectionModel().getSelectedItem().equals("")){
+             alert1.setContentText("Il y a des champs vides !");
+            alert1.showAndWait();
+            }
+            else if(!sc.isNumeric(contact.getText())|| contact.getText().length()!=8){
+                alert1.setContentText("Le contact est invalide !");
+            alert1.showAndWait();
+            }
+            else if (!sc.Controlechar(br)){            
+            //alert.setHeaderText("null");
+            alert1.setContentText("Le nom est invalide");
+            alert1.showAndWait();
+        }
+            else if (t2.isBefore(t1)){
+            Alert alert2 =new Alert(Alert.AlertType.WARNING);
+            //alert.setHeaderText("null");
+            alert2.setContentText("Vérifier les heures d'ouverture et de fermeture");
+            alert2.showAndWait();
+                    }
+            else{
+                bs.modifier(br);  
         loadbranch();
          refresh();
-         Vider();
+         Vider();              
+        alert1.setContentText("Branche est modifiée avec succes");
+            }
+         }
    }
    private void populateTable(ObservableList<Branche> branlist){
        listebranche.setItems(branlist);
@@ -329,6 +383,12 @@ public class AjouterBrancheController implements Initializable {
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.setScene(scene);
               stage.show();
+    }
+
+    @FXML
+    private void Actualiserr(ActionEvent event) {
+        loadbranch();
+        refresh();
     }
 
 }

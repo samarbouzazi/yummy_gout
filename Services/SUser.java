@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Services;
-import org.json.*;
+import org.json.simple.*;
 import Entities.User;
 import Tools.MaCon;
 //import static com.sun.org.apache.bcel.internal.classfile.Utility.toHexString;
@@ -24,6 +24,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest; 
 import java.security.NoSuchAlgorithmException; 
+import java.util.UUID;
 import org.json.simple.JSONObject;
 
 
@@ -73,19 +74,20 @@ public class SUser {
     }
 
     public void ajouterUser(User user) throws SQLException {
-        String pass="";
-        try{pass=toHexString(getSHA( user.getPassword()));}
-        catch(NoSuchAlgorithmException e) { 
-            System.out.println("Exception thrown for incorrect algorithm: " + e); 
-        } 
-   
-        String req1 = "INSERT INTO `users` (`email`,`roles`,`password`,`cin`, `username`) "
-                + "VALUES ('" + user.getEmail()+ "','"+ user.getRoles()+"', '" +pass+ "', '" + user.getCin()+ "', '" + user.getUsername()+ "');";
-       
-         
-        ste.executeUpdate(req1);
-        System.out.println("Utilisateur ajouté");
+     try {
+        String req = "INSERT INTO USERS (email, roles , password, cin, username) VALUES (?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(req);
+            st.setString(1, user.getEmail());
+            st.setString(2, user.getRoles());
+            st.setString(3,user.getPassword() );
+            st.setInt(4, user.getCin());
+         st.setString(5, user.getUsername());
+           st.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
+    
      public void Sendcode(int id_user,String code) throws SQLException{
      String req="INSERT INTO codemail (id_user,code) VALUES('"+id_user+"','"+code+"');";
      ste.executeUpdate(req);
@@ -310,6 +312,8 @@ public class SUser {
     }
      public String getPassbyId(int id) {
         try {
+                Connection con = MaCon.getInstance().getCnx();
+
             PreparedStatement st = con.prepareStatement("select * from users where id=?");
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -322,6 +326,23 @@ public class SUser {
         }
         return "";
       }
+     public boolean Login( String email, String password){
      
+         boolean flag=true; ;
+        try {
+            Statement st= con.createStatement();
+            ResultSet rs = st.executeQuery("Select * from users where email='"+email+"' and password ='"+password+"' ");
+            if ( rs.next()){
+               flag = true;
+            }else {
+                    flag = false ;
+            }
+        } catch(SQLException ex) {
+                System.out.println(ex);
+                }
+                return flag ;
+     }
+           
+            
     
 }

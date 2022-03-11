@@ -7,7 +7,7 @@ package Services;
 
 import Entities.Fournisseur;
 import Entities.Stock;
-import Entities.User;
+import Entities.User_1;
 import Tools.MaCon;
 import java.sql.Connection;
 import java.sql.ResultSet;

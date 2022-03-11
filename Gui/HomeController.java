@@ -32,6 +32,8 @@ public class HomeController implements Initializable {
     private Button btnstock;
     @FXML
     private Button idbranche;
+    @FXML
+    private Button idbranche1;
 
     /**
      * Initializes the controller class.
@@ -128,6 +130,51 @@ public class HomeController implements Initializable {
     @FXML
     private void brancheee(ActionEvent event) throws IOException {
               Parent root = FXMLLoader.load(getClass().getResource("/Gui/AjouterBranche.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+
+    @FXML
+    private void Livraison(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Gui/LivraisonCRUD.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+
+    @FXML
+    private void avis(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/Gui/crudavis.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+
+    @FXML
+    private void blog(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("/Gui/AffBlog.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+
+    @FXML
+    private void res(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Gui/Reservation.fxml"));
+              Scene scene = new Scene(root);
+              Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+              stage.setScene(scene);
+              stage.show();
+    }
+
+    @FXML
+    private void fich(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/Gui/ClientInfo.fxml"));
               Scene scene = new Scene(root);
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.setScene(scene);

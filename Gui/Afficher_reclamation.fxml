@@ -49,7 +49,7 @@
             <Image url="@../Images/249586776_1006672123522883_6323310930610050706_n.png" />
          </image>
       </ImageView>
-      <Label layoutX="269.0" layoutY="270.0" text="Idpersonne:">
+      <Label layoutX="222.0" layoutY="264.0" text="email personnel:">
          <font>
             <Font name="Bauhaus 93" size="23.0" />
          </font>

@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  *
  * @author DELL PRCISION 3551
@@ -73,7 +75,8 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+  
+        return password= password;
     }
 
     public void setPassword(String password) {
@@ -116,5 +119,7 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", email=" + email + ", roles=" + roles + ", password=" + password + ", cin=" + cin + ", username=" + username + ", activation_token=" + activation_token + ", reset_token=" + reset_token + '}';
     }
+
+    
     
 }

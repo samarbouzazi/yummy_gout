@@ -64,6 +64,5 @@
       <Button layoutX="734.0" layoutY="602.0" mnemonicParsing="false" onAction="#printtttpdff" text="print" />
       <Button layoutX="394.0" layoutY="631.0" mnemonicParsing="false" text="aff" />
       <TextArea fx:id="textttt" layoutX="523.0" layoutY="260.0" prefHeight="338.0" prefWidth="474.0" />
-      <Button layoutX="479.0" layoutY="662.0" mnemonicParsing="false" onAction="#mailingg" text="mail" />
    </children>
 </AnchorPane>
