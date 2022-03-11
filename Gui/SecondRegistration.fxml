@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="content2" prefHeight="628.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.FirstRegistrationController">
+   <children>
+      <Label layoutX="128.0" layoutY="75.0" text="Registration Form">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="105.0" text="Fill the form for registration" textFill="#a3a3a3">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      
+      <ImageView fitHeight="123.0" fitWidth="287.0" layoutX="160.0" layoutY="163.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../khadamni/src/Image/images.png" />
+         </image>
+      </ImageView>
+      
+      <Label layoutX="128.0" layoutY="348.0" text="Choose your role :" textFill="#796c6c">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="create_account" layoutX="372.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#doRegistration" style="-fx-background-color: GREEN;" text="CREATE YOUR ACCOUNT" />
+      <JFXRadioButton fx:id="role_entreprise" layoutX="292.0" layoutY="320.0" onAction="#chooseRoleEntreprise" text="Employe" />
+      <JFXRadioButton fx:id="role_condidate" layoutX="292.0" layoutY="379.0" onAction="#chooseRoleCandidate" text="Client" />
+      
+      
+      
+      
+   </children>
+</AnchorPane>
