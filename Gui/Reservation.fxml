@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.ReservationController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="6.0" layoutY="-6.0" prefHeight="700.0" prefWidth="1100.0">
+         <children>
+            <TableView fx:id="resTable" layoutX="14.0" layoutY="366.0" onMouseClicked="#handleMouseAction" prefHeight="319.0" prefWidth="838.0" style="-fx-background-color: white;">
+               <columns>
+                  <TableColumn fx:id="branch_col" prefWidth="144.0" text="Branch Location" />
+                  <TableColumn fx:id="view_col" prefWidth="135.0" text="View" />
+                  <TableColumn fx:id="event_col" prefWidth="155.0" text="Event" />
+                  <TableColumn fx:id="note_col" prefWidth="134.0" text="Notes" />
+                  <TableColumn fx:id="date_col" minWidth="0.0" prefWidth="123.0" text="Date" />
+                  <TableColumn fx:id="guest_col" prefWidth="146.0" text="Guests" />
+               </columns>
+            </TableView>
+            <Label layoutX="336.0" layoutY="14.0" prefHeight="53.0" prefWidth="329.0" text="Tables Interface" textAlignment="CENTER" textFill="#171717">
+               <font>
+                  <Font name="Arial Black" size="36.0" />
+               </font>
+            </Label>
+            <TextField fx:id="search" layoutX="14.0" layoutY="320.0" onKeyPressed="#search" prefHeight="33.0" prefWidth="162.0" promptText="Search..." />
+            <Label layoutX="13.0" layoutY="125.0" text="Branch Location" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Label layoutX="369.0" layoutY="125.0" text="View" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Button fx:id="add" layoutX="640.0" layoutY="137.0" mnemonicParsing="false" onAction="#addRes" onMouseClicked="#addRes" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #f7e8bc;" text="Add" textFill="#111111">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <ImageView fx:id="logo" fitHeight="225.0" fitWidth="263.0" layoutX="845.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="clear" layoutX="817.0" layoutY="133.0" mnemonicParsing="false" onAction="#clear" onMouseClicked="#Clear" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #f7e8bc;" text="Clear" textFill="#111111">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <TextField fx:id="notes" layoutX="453.0" layoutY="200.0" />
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="833.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/cleaning.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="edit" layoutX="729.0" layoutY="137.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modify" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #f7e8bc;" text="Edit" textFill="#111111">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <ImageView fitHeight="25.0" fitWidth="42.0" layoutX="755.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/edit.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="668.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/add-button.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="855.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/delete.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="delete_btn" layoutX="937.0" layoutY="408.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #f7e8bc;" text="Delete">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <TextField fx:id="tablesNum" layoutX="988.0" layoutY="311.0" onAction="#calcul" onMouseClicked="#calcul" prefHeight="33.0" prefWidth="61.0" />
+            <Button fx:id="filter_btn" layoutX="923.0" layoutY="583.0" mnemonicParsing="false" onAction="#filterBy" style="-fx-background-color: #f7e8bc;" text="Filter by Date">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <ChoiceBox fx:id="branch_choiceBox" layoutX="160.0" layoutY="123.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="view_choiceBox" layoutX="453.0" layoutY="123.0" prefWidth="150.0" />
+            <Label layoutX="14.0" layoutY="202.0" text="Event type" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="event_choicebox" layoutX="160.0" layoutY="203.0" prefWidth="150.0" />
+            <Label layoutX="365.0" layoutY="202.0" text="Notes" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <JFXDatePicker fx:id="date_picker" layoutX="469.0" layoutY="296.0" onAction="#calcul" style="-fx-background-color: white;" />
+            <Label layoutX="365.0" layoutY="298.0" text="Pick Date" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="822.0" layoutY="314.0" text="Reservation Total" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="print_btn" layoutX="937.0" layoutY="486.0" mnemonicParsing="false" onAction="#printRes" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #f7e8bc;" text="Print">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="855.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/print.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="refresh" fitHeight="31.0" fitWidth="25.0" layoutX="198.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/refresh.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="guestNum" layoutX="161.0" layoutY="273.0" />
+            <Label layoutX="14.0" layoutY="269.0" text="GuestsNum" textFill="#900707">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="home_btn" fitHeight="63.0" fitWidth="61.0" layoutX="16.0" layoutY="14.0" onMouseClicked="#GoHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="61.0" fitWidth="50.0" layoutX="860.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/filter.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="confirmQr" layoutX="740.0" layoutY="210.0" mnemonicParsing="false" onAction="#sendQr" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #f7e8bc;" text="Confirm" textFill="#111111">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

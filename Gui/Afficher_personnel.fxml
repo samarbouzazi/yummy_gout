@@ -109,11 +109,6 @@
          </font>
       </Label>
       <Label fx:id="txtnb" layoutX="264.0" layoutY="714.0" onMouseClicked="#getnbr" prefHeight="21.0" prefWidth="39.0" style="-fx-background-color: white;" />
-      <ImageView fitHeight="188.0" fitWidth="225.0" layoutX="-22.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/272328160_814440549515136_7364603113227427322_n.png" />
-         </image>
-      </ImageView>
       <FontAwesomeIconView glyphName="SEARCH" glyphStyle="-fx-fill:#5b0e0e" layoutX="1003.0" layoutY="478.0" size="24" text="" wrappingWidth="25.857142448425293" />
       <Button fx:id="ded" layoutX="928.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#calulator" prefHeight="47.0" prefWidth="176.0" style="-fx-background-color: grey;" text="Calculatrice" textFill="WHITE" />
       <Button layoutX="905.0" layoutY="705.0" mnemonicParsing="false" onAction="#trier" prefHeight="47.0" prefWidth="153.0" text="trier par salaire" />
@@ -141,10 +136,5 @@
          </image>
       </ImageView>
       <Button layoutX="45.0" layoutY="125.0" mnemonicParsing="false" onMouseClicked="#pdf" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: white;" textFill="WHITE" />
-      <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="55.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/pdf.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

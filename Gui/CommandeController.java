@@ -323,7 +323,7 @@ if (alert.getResult() == ButtonType.YES) {
     private void calculatrice(MouseEvent event) {
      
         try{
-            FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource("Calculatrice.fxml"));
+            FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource("Calculatrice_1.fxml"));
             Parent root1=(Parent) fxmlloader.load();
             Stage stage= new Stage();
             stage.setTitle("calculatrice");
@@ -337,35 +337,35 @@ if (alert.getResult() == ButtonType.YES) {
 
     @FXML
     private void pdf(MouseEvent event) throws FileNotFoundException, SQLException, DocumentException {
-        
-        
-         panier tab_Recselected = tablepannier.getSelectionModel().getSelectedItem();
-
-       
-       String Var_nomplat=String.valueOf(tab_Recselected.getNomplat());
-       String qt=String.valueOf(tab_Recselected.getNomplat());
-       
-       String Var_prixplat=String.valueOf(tab_Recselected.getPrix_plat());
-       //String Var_id=String.valueOf(tab_Recselected.calculer_pannier());
-       String Var_somme=String.valueOf(tab_Recselected.getSomme());
-          String Var_numero_facture=String.valueOf(tab_Recselected.getNumfacture());
-        Pdf22 p = new Pdf22();
-    p.add("Ma ",Var_nomplat,qt,Var_prixplat,Var_somme,Var_numero_facture);
-    
-   try {
-            String a;
-            //a = "C:\\Users\\chaim\\Documents\\NetBeansProjects\\yummyyygoutttttttt";
-            a="C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1";
-            System.out.println(a);
-        File file = new File(a);
-        if (file.exists()){ 
-        if(Desktop.isDesktopSupported()){
-            Desktop.getDesktop().open(file);
-        }}
-    }
-catch(Exception e){System.out.println("");}
-  
-        
+//        
+//        
+//         panier tab_Recselected = tablepannier.getSelectionModel().getSelectedItem();
+//
+//       
+//       String Var_nomplat=String.valueOf(tab_Recselected.getNomplat());
+//       String qt=String.valueOf(tab_Recselected.getNomplat());
+//       
+//       String Var_prixplat=String.valueOf(tab_Recselected.getPrix_plat());
+//       //String Var_id=String.valueOf(tab_Recselected.calculer_pannier());
+//       String Var_somme=String.valueOf(tab_Recselected.getSomme());
+//          String Var_numero_facture=String.valueOf(tab_Recselected.getNumfacture());
+//        Pdf22 p = new Pdf22();
+//    p.add(Var_nomplat+".pdf",Var_nomplat,qt,Var_prixplat,Var_somme,Var_numero_facture);
+//    
+//   try {
+//            String a;
+//            //a = "C:\\Users\\chaim\\Documents\\NetBeansProjects\\yummyyygoutttttttt";
+//            a="C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1";
+//            System.out.println(a);
+//        File file = new File(a);
+//        if (file.exists()){ 
+//        if(Desktop.isDesktopSupported()){
+//            Desktop.getDesktop().open(file);
+//        }}
+//    }
+//catch(Exception e){System.out.println("");}
+//  
+//        
     }
 
     @FXML
@@ -409,15 +409,15 @@ catch(Exception e){System.out.println("");}
         //PdfWriter  pdfWriter =new PdfWriter(path);
         Document doc=new Document();
         try{
-            PdfWriter pp=PdfWriter.getInstance(doc, new FileOutputStream("Facture"));
+            PdfWriter pp=PdfWriter.getInstance(doc, new FileOutputStream("Facture.pdf"));
             
             doc.open();
             doc.add(new Paragraph(textttt.getText()));
-            doc.close();
             
-            pp.close();
-        //    document.add(com.itextpdf.text.Image.getInstance("Images\\logo.png"));
+            //document.add(com.itextpdf.text.Image.getInstance("C:\\Users\\Smayra\\Desktop\\JAVAFX Projects\\tester_crud_1-20220308T220817Z-001\\tester_crud_1\\src\\Images\\logo.png"));
             document.close();
+            doc.close();
+            pp.close();
             System.out.println("finished");
         }
         catch(DocumentException e){
@@ -425,10 +425,6 @@ catch(Exception e){System.out.println("");}
         }       
     }
 
-    @FXML
-    private void mailingg(ActionEvent event) throws MessagingException, AddressException, IOException {
-        
-    }
     
 
 

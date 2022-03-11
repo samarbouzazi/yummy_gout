@@ -29,82 +29,82 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="one" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="138.0" text="1">
+            <Button fx:id="one" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="two" mnemonicParsing="false" onAction="#handaction" prefHeight="68.0" prefWidth="138.0" text="2" GridPane.columnIndex="1">
+            <Button fx:id="two" mnemonicParsing="false" onAction="#handaction" prefHeight="68.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="2" GridPane.columnIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="four" mnemonicParsing="false" onAction="#handaction" prefHeight="62.0" prefWidth="138.0" text="4" GridPane.rowIndex="1">
+            <Button fx:id="four" mnemonicParsing="false" onAction="#handaction" prefHeight="62.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="4" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="five" mnemonicParsing="false" onAction="#handaction" prefHeight="61.0" prefWidth="138.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="five" mnemonicParsing="false" onAction="#handaction" prefHeight="61.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="seven" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="138.0" text="7" GridPane.rowIndex="2">
+            <Button fx:id="seven" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="7" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="zero" mnemonicParsing="false" onAction="#handaction" prefHeight="71.0" prefWidth="138.0" text="0" GridPane.rowIndex="3">
+            <Button fx:id="zero" mnemonicParsing="false" onAction="#handaction" prefHeight="71.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="0" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="height" mnemonicParsing="false" onAction="#handaction" prefHeight="64.0" prefWidth="138.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="height" mnemonicParsing="false" onAction="#handaction" prefHeight="64.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="equals" mnemonicParsing="false" onAction="#handaction" prefHeight="71.0" prefWidth="138.0" text="=" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="equals" mnemonicParsing="false" onAction="#handaction" prefHeight="71.0" prefWidth="138.0" style="-fx-background-color: LIGHTGREEN;" text="=" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="sex" mnemonicParsing="false" onAction="#handaction" prefHeight="68.0" prefWidth="137.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="sex" mnemonicParsing="false" onAction="#handaction" prefHeight="68.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="three" mnemonicParsing="false" onAction="#handaction" prefHeight="69.0" prefWidth="137.0" text="3" GridPane.columnIndex="2">
+            <Button fx:id="three" mnemonicParsing="false" onAction="#handaction" prefHeight="69.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="3" GridPane.columnIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="addition" mnemonicParsing="false" onAction="#handaction" prefHeight="75.0" prefWidth="137.0" text="+" GridPane.columnIndex="3">
+            <Button fx:id="addition" mnemonicParsing="false" onAction="#handaction" prefHeight="75.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="+" GridPane.columnIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="soustraction" mnemonicParsing="false" onAction="#handaction" prefHeight="61.0" prefWidth="137.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button fx:id="soustraction" mnemonicParsing="false" onAction="#handaction" prefHeight="61.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="nine" mnemonicParsing="false" onAction="#handaction" prefHeight="66.0" prefWidth="137.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button fx:id="nine" mnemonicParsing="false" onAction="#handaction" prefHeight="66.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="cl" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="137.0" text="CL" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="cl" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="CL" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="multiplication" mnemonicParsing="false" onAction="#handaction" prefHeight="68.0" prefWidth="137.0" text="*" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Button fx:id="multiplication" mnemonicParsing="false" onAction="#handaction" prefHeight="68.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="*" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="division" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="137.0" text="/" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Button fx:id="division" mnemonicParsing="false" onAction="#handaction" prefHeight="65.0" prefWidth="137.0" style="-fx-background-color: LIGHTGREEN;" text="/" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>

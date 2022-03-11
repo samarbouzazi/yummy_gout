@@ -11,7 +11,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -59,14 +58,11 @@ public class FirstRegistrationController implements Initializable {
     
     
 SUser userService = new SUser();
-    @FXML
     private AnchorPane content2;
-    @FXML
-    private Button create_account;
-    @FXML
     private JFXRadioButton role_entreprise;
-    @FXML
     private JFXRadioButton role_condidate;
+    @FXML
+    private Label ver_cin;
     /**
      * Initializes the controller class.
      */
@@ -82,7 +78,7 @@ SUser userService = new SUser();
         Pattern pattern = Pattern.compile(masque);
         Matcher controler = pattern.matcher(email.getText());
         if (controler.matches()) {
-        if ((userService.getUserByUserName(userName.getText())!=0) || ((!tf_password.getText() .equals(tf_repeter.getText())))) {
+        if ((userService.getUserByUserName(userName.getText())!=0) || ((!tf_password.getText().equals(tf_repeter.getText())))) {
         if (userService.getUserByUserName(userName.getText())!=0) {
 
                 Notifications notificationBuilder = Notifications.create()
@@ -156,14 +152,12 @@ SUser userService = new SUser();
 
       
     }
-    @FXML
     private void doRegistration(MouseEvent event) throws SQLException, IOException {
         userService.ajouterUser(user);
         AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/Gui/Authentification.fxml"));
         content2.getChildren().clear();
         content2.getChildren().add(newLoadedPane);
     }
-    @FXML
     private void chooseRoleCandidate(ActionEvent event) {
     if (role_condidate.isSelected()){
             role_condidate.setSelected(false);
@@ -171,7 +165,6 @@ SUser userService = new SUser();
             user.setRoles("[\"Candidat\"]");
         }
     }
-    @FXML
     private void chooseRoleEntreprise(ActionEvent event) {
         if (role_entreprise.isSelected()){
             role_entreprise.setSelected(false);
@@ -179,7 +172,6 @@ SUser userService = new SUser();
             user.setRoles("[\"Entreprise\"]");
         }
     }
-@FXML
     private void retour1(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/Gui/Authentification.fxml"));
               Scene scene = new Scene(root);
