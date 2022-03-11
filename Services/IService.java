@@ -9,11 +9,11 @@ import java.util.List;
 
 /**
  *
- * @author chaim
+ * @author DELL PRCISION 3551
  */
-public interface Iservice<T>{
-      void ajouter(T t);
+public interface IService<T> {
+    void ajouter(T t);
     List<T> afficher();
-    void supprimer (T t);
-    void modifier(T t);
+    
+    
 }
