@@ -19,9 +19,9 @@
         <URL value="@ajouterbranche.css" />
     </stylesheets>
    <children>
-      <ImageView fitHeight="930.0" fitWidth="1300.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="tri" fitHeight="930.0" fitWidth="1300.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/fcefda8549f3ea4c7f14e1747c45e8b5.jpg" />
+            <Image url="@../Images/272281762_468075401675831_7085673617812537326_n.jpg" />
          </image>
       </ImageView>
       <Label layoutX="38.0" layoutY="16.0" prefHeight="83.0" prefWidth="532.0" text="Les branches" textFill="#e04f19">
@@ -29,17 +29,17 @@
             <Font name="Bodoni MT" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="225.0" layoutY="153.0" text="Nom branche">
+      <Label layoutX="217.0" layoutY="110.0" text="Nom branche">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="225.0" layoutY="210.0" prefHeight="27.0" prefWidth="115.0" text="Contact">
+      <Label layoutX="232.0" layoutY="163.0" prefHeight="27.0" prefWidth="115.0" text="Contact">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="209.0" layoutY="257.0" text="Emplacement">
+      <Label layoutX="232.0" layoutY="224.0" text="Emplacement">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -81,22 +81,23 @@
       </JFXButton>
       <FontAwesomeIconView fx:id="close" glyphName="CLOSE" layoutX="1252.0" layoutY="42.0" onMouseClicked="#close" size="30" />
       <TextField fx:id="Recherche" layoutX="982.0" layoutY="295.0" prefHeight="31.0" prefWidth="226.0" promptText="rechercher .." />
-      <TextField fx:id="nomb" layoutX="357.0" layoutY="155.0" prefHeight="31.0" prefWidth="270.0" />
-      <TextField fx:id="contact" layoutX="357.0" layoutY="208.0" prefHeight="31.0" prefWidth="270.0" />
-      <TextField fx:id="emplacement" layoutX="357.0" layoutY="255.0" prefHeight="31.0" prefWidth="270.0" />
+      <TextField fx:id="nomb" layoutX="357.0" layoutY="117.0" prefHeight="31.0" prefWidth="270.0" />
+      <TextField fx:id="contact" layoutX="357.0" layoutY="165.0" prefHeight="31.0" prefWidth="270.0" />
+      <TextField fx:id="emplacement" layoutX="357.0" layoutY="222.0" prefHeight="31.0" prefWidth="270.0" />
       <JFXComboBox fx:id="heureouv" layoutX="885.0" layoutY="102.0" onAction="#SelectHeureOuverture" />
       <JFXComboBox fx:id="minouv" layoutX="974.0" layoutY="103.0" onAction="#SelectMinOuverture" />
       <JFXComboBox fx:id="heureferm" layoutX="885.0" layoutY="166.0" onAction="#SelectHeureFermeture" />
       <JFXComboBox fx:id="minferm" layoutX="982.0" layoutY="171.0" onAction="#SelectMinFermeture" />
       <FontAwesomeIconView fill="#5b1add" glyphName="SEARCH" layoutX="956.0" layoutY="317.0" size="20" />
-      <TableView fx:id="listebranche" layoutX="108.0" layoutY="342.0" prefHeight="414.0" prefWidth="1141.0">
+      <TableView fx:id="listebranche" layoutX="79.0" layoutY="507.0" onMouseClicked="#handleMouseActionnnnn" prefHeight="223.0" prefWidth="1092.0">
         <columns>
-          <TableColumn fx:id="idbranche" minWidth="2.0" prefWidth="2.0" text="Id_branche" />
-          <TableColumn fx:id="nombranche" prefWidth="200.0" text="Nom_branche" />
-            <TableColumn fx:id="cont" prefWidth="200.0" text="Contact" />
-            <TableColumn fx:id="emp" prefWidth="200.0" text="Emplacement" />
-            <TableColumn fx:id="Houvert" prefWidth="271.0" text="Heure_ouverture" />
-            <TableColumn fx:id="Hferm" prefWidth="271.0" text="Heure_fermeture" />
+          <TableColumn fx:id="idbranche" minWidth="0.0" prefWidth="0.0" text="Id_branche" />
+          <TableColumn fx:id="nombranche" prefWidth="127.0" text="Nom_branche" />
+            <TableColumn fx:id="cont" prefWidth="130.0" text="Contact" />
+            <TableColumn fx:id="emp" prefWidth="213.0" text="Emplacement" />
+            <TableColumn fx:id="Houvert" prefWidth="208.0" text="Heure_ouverture" />
+            <TableColumn fx:id="Hferm" prefWidth="206.0" text="Heure_fermeture" />
+            <TableColumn fx:id="callimage" prefWidth="206.0" text="image" />
         </columns>
       </TableView>
       <ImageView fitHeight="31.0" fitWidth="44.0" layoutX="828.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
@@ -114,11 +115,6 @@
             <Image url="@../Images/273888997_1163388077740325_3031392608565865759_n.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnselect" layoutX="807.0" layoutY="795.0" mnemonicParsing="false" onMouseClicked="#selectrow" style="-fx-background-color: pink;" text="Sélectionner pour modifier" textFill="#1e1d1d">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="31.0" fitWidth="44.0" layoutX="768.0" layoutY="795.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/274004864_1580599505660203_3488215426085879374_n.png" />
@@ -134,17 +130,22 @@
             <Image url="@../Images/249586776_1006672123522883_6323310930610050706_n.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="190.0" fitWidth="297.0" layoutX="1035.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="190.0" fitWidth="297.0" layoutX="1051.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/274718304_691483915205947_4536177148937474099_n.png" />
+            <Image url="@../Images/272328160_814440549515136_7364603113227427322_n.png" />
          </image>
       </ImageView>
       <Button layoutX="859.0" layoutY="295.0" mnemonicParsing="false" onAction="#rechercher" text="rechercher" />
       <FontAwesomeIconView fx:id="home" glyphName="HOME" layoutX="1156.0" layoutY="67.0" onMouseClicked="#gotohome" size="60" />
-      <Button layoutX="377.0" layoutY="795.0" mnemonicParsing="false" onAction="#Actualiserr" prefHeight="39.0" prefWidth="115.0" style="-fx-background-color: pink;" text="Actualiser">
+      <Button fx:id="actualiser" layoutX="727.0" layoutY="295.0" mnemonicParsing="false" onAction="#actualiserrr" text="Actualiser" />
+      <JFXButton fx:id="trierr" layoutX="575.0" layoutY="284.0" onAction="#trierparheure" text="Trier par heure" />
+      <Label layoutX="144.0" layoutY="286.0" text="Image">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
-      </Button>
+      </Label>
+      <TextField fx:id="imageb" layoutX="232.0" layoutY="284.0" />
+      <ImageView fx:id="imagev" fitHeight="150.0" fitWidth="200.0" layoutX="190.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="uploadaaa" layoutX="460.0" layoutY="337.0" mnemonicParsing="false" onAction="#upload" text="upload" />
    </children>
 </AnchorPane>

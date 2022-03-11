@@ -16,6 +16,34 @@ public class Branche {
     private String Emplacement;
     private String Heureo;
      private String Heuref;
+     private String image;
+
+    public Branche(int Idbranche, String NomBranche, String Contact, String Emplacement, String Heureo, String Heuref, String image) {
+        this.Idbranche = Idbranche;
+        this.NomBranche = NomBranche;
+        this.Contact = Contact;
+        this.Emplacement = Emplacement;
+        this.Heureo = Heureo;
+        this.Heuref = Heuref;
+        this.image = image;
+    }
+
+    public Branche(String NomBranche, String Contact, String Emplacement, String Heureo, String Heuref, String image) {
+        this.NomBranche = NomBranche;
+        this.Contact = Contact;
+        this.Emplacement = Emplacement;
+        this.Heureo = Heureo;
+        this.Heuref = Heuref;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Branche(String Emplacement) {
         this.Emplacement = Emplacement;
@@ -95,8 +123,9 @@ public class Branche {
 
     @Override
     public String toString() {
-        return "Branche{" + "Idbranche=" + Idbranche + ", NomBranche=" + NomBranche + ", Contact=" + Contact + ", Emplacement=" + Emplacement + ", Heureo=" + Heureo + ", Heuref=" + Heuref + '}';
+        return "Branche{" + "Idbranche=" + Idbranche + ", NomBranche=" + NomBranche + ", Contact=" + Contact + ", Emplacement=" + Emplacement + ", Heureo=" + Heureo + ", Heuref=" + Heuref + ", image=" + image + '}';
     }
+
 
    
     
