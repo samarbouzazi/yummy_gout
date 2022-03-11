@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.ReponssseController">
+   <children>
+      <ImageView fitHeight="917.0" fitWidth="1129.0" layoutX="1.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fcefda8549f3ea4c7f14e1747c45e8b5.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="476.0" layoutY="31.0" prefHeight="43.0" prefWidth="289.0" text="Réponse" textFill="#c63131">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="635.0" layoutY="395.0" text="Réponse:" textFill="#1b1a1a">
+         <font>
+            <Font name="Bauhaus 93" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_rep" layoutX="764.0" layoutY="393.0" />
+      <JFXComboBox fx:id="combox1" layoutX="766.0" layoutY="421.0" prefHeight="31.0" prefWidth="187.0" />
+      <JFXButton fx:id="ajout" layoutX="977.0" layoutY="325.0" onMouseClicked="#ajouter" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: grey;" text="Ajouter" textFill="#f8f5f5" />
+      <JFXButton fx:id="clear1" layoutX="977.0" layoutY="435.0" onMouseClicked="#clear" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: grey;" text="clear" textFill="#f5f3f3" />
+      <Button layoutX="981.0" layoutY="382.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: grey;" text="Supprimer" textFill="#f5f3f3" />
+      <ImageView fitHeight="40.0" fitWidth="34.0" layoutX="983.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/274791838_1154901028610440_4085653373926603886_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="985.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/273005573_5036077613097392_6831833910378070497_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="985.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/249586776_1006672123522883_6323310930610050706_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="635.0" layoutY="437.0" text="reclamation:">
+         <font>
+            <Font name="Bauhaus 93" size="23.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="188.0" fitWidth="225.0" layoutX="1.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/272328160_814440549515136_7364603113227427322_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="123.0" layoutY="411.0" prefHeight="36.0" prefWidth="390.0" text="Liste Des Réponses" textFill="#c63131">
+         <font>
+            <Font name="Britannic Bold" size="26.0" />
+         </font>
+      </Label>
+      <TableView fx:id="rep" layoutX="123.0" layoutY="451.0" onMouseClicked="#handleMouseAction" prefHeight="200.0" prefWidth="485.0">
+         <columns>
+            <TableColumn fx:id="idrep" minWidth="0.0" prefWidth="0.0" text="Id" />
+            <TableColumn fx:id="repo" prefWidth="204.0" text="Réponse" />
+            <TableColumn fx:id="idrec" prefWidth="129.0" text=" Id Réclamation" />
+            <TableColumn fx:id="daterep" prefWidth="151.0" text="Date Réponse" />
+         </columns>
+      </TableView>
+      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="617.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/274004864_1580599505660203_3488215426085879374_n.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="modf" layoutX="652.0" layoutY="556.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: grey;" text="Modifier" textFill="#fff9f9" />
+      <ImageView fitHeight="40.0" fitWidth="26.0" layoutX="659.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/273888997_1163388077740325_3031392608565865759_n.png" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView glyphName="HOME" layoutX="1040.0" layoutY="84.0" onMouseClicked="#home6" size="60" />
+      <TableView fx:id="recla" layoutX="114.0" layoutY="154.0" onMouseClicked="#getSlected" prefHeight="200.0" prefWidth="485.0">
+         <columns>
+            <TableColumn fx:id="rec" minWidth="0.0" prefWidth="0.0" text="Id" />
+            <TableColumn fx:id="desc1" prefWidth="173.0" text="Description" />
+            <TableColumn fx:id="idper" prefWidth="140.0" text="Personnel" />
+            <TableColumn fx:id="daterec" prefWidth="171.0" text="Date réclamation" />
+         </columns>
+      </TableView>
+      <Label layoutX="123.0" layoutY="102.0" prefHeight="36.0" prefWidth="390.0" text="Liste Des Réclamations" textFill="#c63131">
+         <font>
+            <Font name="Britannic Bold" size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

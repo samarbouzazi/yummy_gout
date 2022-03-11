@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AffBlogController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1056.0" layoutX="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/272281762_468075401675831_7085673617812537326_n.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="-1.0" layoutY="118.0" prefHeight="0.0" prefWidth="1048.0" style="-fx-background-color: black;" />
+      <Text fill="#ab2020" fontSmoothingType="LCD" layoutX="137.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="liste des blogs" textAlignment="CENTER" wrappingWidth="513.6708984375">
+         <font>
+            <Font name="Arial Nova Cond Bold Italic" size="36.0" />
+         </font>
+      </Text>
+     
+      <Text layoutX="24.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="titreblog:" />
+      <Text layoutX="22.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="descblog:" />
+      
+      <TextField fx:id="titrebl" layoutX="97.0" layoutY="113.0" />
+      <Text layoutX="28.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image :" />
+      <TextField fx:id="imgpathh" layoutX="97.0" layoutY="247.0" />
+      <TableView fx:id="blogliiist" layoutX="33.0" layoutY="454.0" onMouseClicked="#handleMouseAction" prefHeight="230.0" prefWidth="1005.0">
+         <columns>
+            <TableColumn fx:id="idblog" minWidth="0.0" prefWidth="0.0" text="Id" />
+            <TableColumn fx:id="titre" prefWidth="322.0" text="titreblog" />
+          
+            <TableColumn fx:id="decccss" prefWidth="361.0" text="description blog" />
+            <TableColumn fx:id="imaggeeee" prefWidth="376.0" text="image" />
+         </columns>
+      </TableView>
+      <FontAwesomeIconView fx:id="close" glyphName="CLOSE" layoutX="1006.0" layoutY="31.0" onMouseClicked="#close" size="20" text="" wrappingWidth="16.714285850524902" />
+
+      <Button layoutX="378.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#ajouter" prefHeight="31.0" prefWidth="200.0" text="Ajouter" />
+      <Button layoutX="382.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#supp" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #DF9F9E;" text="supprimer" />
+      <Button fx:id="modifierrrrrrr" layoutX="376.0" layoutY="164.0" mnemonicParsing="false" onAction="#update" onMouseClicked="#modifier" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #DF9F9E;" text="modifier" />
+      <Button layoutX="904.0" layoutY="694.0" mnemonicParsing="false" onAction="#trier" prefHeight="56.0" prefWidth="125.0" text="trier" />
+      <TextField fx:id="Recherche" layoutX="842.0" layoutY="416.0" onKeyReleased="#rechercher" />
+      <FontAwesomeIconView glyphName="HOME" layoutX="41.0" layoutY="71.0" onMouseClicked="#home" size="55" text="" wrappingWidth="11.142857551574707" />
+      <ImageView fitHeight="250.0" fitWidth="400.0" layoutX="689.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/home/274718304_691483915205947_4536177148937474099_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="44.0" fitWidth="24.0" layoutX="392.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/273005573_5036077613097392_6831833910378070497_n.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="41.0" layoutY="694.0" mnemonicParsing="false" onAction="#pdf" prefHeight="56.0" prefWidth="133.0" text="Pdf" />
+      <JFXTextArea fx:id="desc" layoutX="97.0" layoutY="166.0" prefHeight="56.0" prefWidth="211.0" />
+      <ImageView fitHeight="44.0" fitWidth="150.0" layoutX="41.0" layoutY="700.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/pdf.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="44.0" fitWidth="150.0" layoutX="790.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/searching-bar.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="iconn_importtt" layoutX="308.0" layoutY="272.0" mnemonicParsing="false" onAction="#uploaddd" text="upload" />
+      <ImageView fx:id="imgvieww" fitHeight="150.0" fitWidth="200.0" layoutX="664.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="675.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/cleaning.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="42.0" layoutX="675.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="675.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/add-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="542.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/x-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="858.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tap.png" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView glyphName="SORT" layoutX="874.0" layoutY="612.0" size="40" />
+   </children>
+</AnchorPane>

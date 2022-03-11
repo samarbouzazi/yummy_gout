@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package Entities;
 
 /**
  *
@@ -12,15 +12,15 @@ package entities;
 public class categorie {
 
      
-    private int idcat;
+    private int idcatt;
     private String Nomcat;
     private String Image;
     
      public categorie() {
     }
 
-    public categorie(int idcat,String Nomcat, String Image) {
-        this.idcat=idcat;
+    public categorie(int idcatt,String Nomcat, String Image) {
+        this.idcatt=idcatt;
         this.Nomcat = Nomcat;
         this.Image = Image;
         
@@ -31,16 +31,16 @@ public class categorie {
         
     }
 
-    public categorie(int idcat) {
-        this.idcat =idcat ;
+    public categorie(int idcatt) {
+        this.idcatt =idcatt ;
     }
     
-    public int getidcat() {
-        return idcat;
+    public int getidcatt() {
+        return idcatt;
     }
 
-    public void setidcat(int idcat) {
-        this.idcat = idcat;
+    public void setidcatt(int idcatt) {
+        this.idcatt = idcatt;
     }
     
     public String getNomcat() {
@@ -61,8 +61,12 @@ public class categorie {
 
     @Override
     public String toString() {
-        return "categorie {" + "idcat=" + idcat + "," + "Nomcat=" + Nomcat + ", Image=" + Image + '}';
+        return "categorie {" + "idcat=" + idcatt + "," + "Nomcat=" + Nomcat + ", Image=" + Image + '}';
     }
+
+    
+
+    
     
     
    

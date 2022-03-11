@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Afficher_fournisseurController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="1.0" prefHeight="686.0" prefWidth="1051.0">
+         <children>
+            <ImageView fitHeight="758.0" fitWidth="1073.0" layoutX="-8.0" layoutY="-25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/fcefda8549f3ea4c7f14e1747c45e8b5.jpg" />
+               </image>
+            </ImageView>
+            <TableView fx:id="tablestock" layoutX="14.0" layoutY="366.0" onMouseClicked="#handleMouseAction" prefHeight="319.0" prefWidth="838.0">
+               <columns>
+                  <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="0.0" text="Id" />
+                  <TableColumn fx:id="prenomCol" prefWidth="199.0" text="Prénom" />
+                  <TableColumn fx:id="nomCol" prefWidth="142.0" text="Nom " />
+                  <TableColumn fx:id="telCol" prefWidth="142.0" text="Téléphone" />
+                  <TableColumn fx:id="catCol" prefWidth="142.0" text="Catégorie" />
+                  <TableColumn fx:id="mailCol" prefWidth="211.0" text="Email" />
+               </columns>
+            </TableView>
+            <Label layoutX="336.0" layoutY="14.0" prefHeight="53.0" prefWidth="329.0" text="Liste des fournisseurs" textAlignment="CENTER" textFill="#ab1609">
+               <font>
+                  <Font name="Bauhaus 93" size="36.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#ab1609" glyphName="CLOSE" layoutX="1014.0" layoutY="41.0" onMouseClicked="#close" size="32.0" text="" wrappingWidth="25.428571701049805" />
+            <TextField fx:id="find" layoutX="14.0" layoutY="320.0" onKeyReleased="#rechercher" prefHeight="33.0" prefWidth="162.0" promptText="Rechercher" />
+            <TextField fx:id="nomfounisseur" layoutX="106.0" layoutY="123.0" />
+            <TextField fx:id="email" layoutX="304.0" layoutY="276.0" />
+            <Label layoutX="22.0" layoutY="125.0" text="Nom" />
+            <Label layoutX="369.0" layoutY="125.0" text="Catégorie" />
+            <Label layoutX="369.0" layoutY="202.0" text="Tel;" />
+            <Label layoutX="255.0" layoutY="280.0" text="Email" />
+            <Label layoutX="22.0" layoutY="204.0" text="Prénom" />
+            <TextField fx:id="prenom" layoutX="106.0" layoutY="202.0" />
+            <Button fx:id="ajout" layoutX="697.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#Ajouter" text="Ajouter" />
+            <ImageView fx:id="logo" fitHeight="206.0" fitWidth="242.0" layoutX="650.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/274718304_691483915205947_4536177148937474099_n.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="ajout1" layoutX="697.0" layoutY="132.0" mnemonicParsing="false" onMouseClicked="#Clear" text="Clear" />
+            <TextField fx:id="categorie" layoutX="453.0" layoutY="123.0" />
+            <TextField fx:id="telephone" layoutX="453.0" layoutY="200.0" />
+            <FontAwesomeIconView glyphName="HOME" layoutX="14.0" layoutY="61.0" onMouseClicked="#GoHome" size="60" text="" />
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="665.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/cleaning.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="698.0" layoutY="182.0" mnemonicParsing="false" onAction="#modifierfournisseur" text="Modifier" />
+            <ImageView fitHeight="25.0" fitWidth="42.0" layoutX="665.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/edit.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="665.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/add-button.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="855.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/x-button.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="51.0" layoutX="848.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/tap.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="ajout3" layoutX="910.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="25.0" prefWidth="73.0" text="Supprimer" />
+            <Button fx:id="ajout4" layoutX="893.0" layoutY="501.0" mnemonicParsing="false" text="Selectionner pour traiter" />
+            <TextField fx:id="txtnb" layoutX="924.0" layoutY="311.0" onAction="#txtnb" prefHeight="33.0" prefWidth="61.0" />
+            <Label layoutX="752.0" layoutY="319.0" text="Nombre total des fournisseurs:" />
+            <Button layoutX="910.0" layoutY="576.0" mnemonicParsing="false" onMouseClicked="#trier" text="trier par nom" />
+            <JFXButton layoutX="851.0" layoutY="181.0" onAction="#fav" style="-fx-background-color: GREY;" text="Votre Founisseur Favorie" />
+            <FontAwesomeIconView glyphName="REFRESH" layoutX="214.0" layoutY="349.0" onMouseClicked="#refreshh" size="40" />
+            <FontAwesomeIconView glyphName="SORT" layoutX="864.0" layoutY="602.0" size="40" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

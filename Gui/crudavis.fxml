@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.CrudavisController">
+   <children>
+      <ImageView fitHeight="1000.0" fitWidth="1056.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/272281762_468075401675831_7085673617812537326_n.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#d31414" layoutX="76.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listes des avis " textAlignment="CENTER" wrappingWidth="597.6708984375">
+         <font>
+            <Font name="Arial Nova Cond Bold Italic" size="32.0" />
+         </font></Text>
+      <HBox alignment="CENTER" layoutX="820.0" layoutY="73.0" />
+      <FontAwesomeIconView fx:id="close" glyphName="CLOSE" layoutX="1017.0" layoutY="31.0" onMouseClicked="#close" size="20" text="" wrappingWidth="16.714285850524902" />
+      <FontAwesomeIconView fill="#64b54b" glyphName="REFRESH" layoutX="998.0" layoutY="114.0" onMouseClicked="#refreshTable" size="45" />
+      <Text layoutX="14.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nomclient:" />
+      <Text layoutX="173.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="26.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="like:" />
+      <Text layoutX="173.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="25.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deslike:" />
+      
+      <TableView fx:id="liistesdesavis" layoutX="86.0" layoutY="467.0" onMouseClicked="#select" prefHeight="241.0" prefWidth="923.0">
+        <columns>
+   
+            <TableColumn fx:id="ida" minWidth="0.0" prefWidth="7.0" text="idavis" />
+            <TableColumn fx:id="idc" minWidth="0.0" prefWidth="0.0" text="idclient" />
+            <TableColumn fx:id="davis" prefWidth="249.0" text="dateavis" />
+            <TableColumn fx:id="likee" prefWidth="115.0" text="like" />
+            <TableColumn fx:id="deslikee" prefWidth="237.0" text="deslike" />
+            <TableColumn fx:id="descavis" prefWidth="316.0" text="descriptionavis" />
+        </columns>
+      </TableView>
+      <Button layoutX="420.0" layoutY="106.0" mnemonicParsing="false" onAction="#add" prefHeight="31.0" prefWidth="88.0" text="Ajouter" />
+      <Button fx:id="supprimer" layoutX="420.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#Supprimer" text="supprimer" />
+      
+      <Text layoutX="14.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="descriptionavis:" />
+      
+      <TextField fx:id="Deslikeee" layoutX="116.0" layoutY="235.0" prefHeight="31.0" prefWidth="202.0" />
+      <TextField fx:id="likeee" layoutX="116.0" layoutY="183.0" prefHeight="31.0" prefWidth="202.0" />
+      <ComboBox fx:id="idclientt" layoutX="116.0" layoutY="127.0" prefHeight="31.0" prefWidth="202.0" />
+      <FontAwesomeIconView glyphName="HOME" layoutX="39.0" layoutY="74.0" onMouseClicked="#home1" size="55" />
+      <ImageView fitHeight="250.0" fitWidth="400.0" layoutX="675.0" layoutY="-62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/home/274718304_691483915205947_4536177148937474099_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="31.0" layoutX="391.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/273005573_5036077613097392_6831833910378070497_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="150.0" layoutX="391.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/home/249586776_1006672123522883_6323310930610050706_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="150.0" layoutX="359.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/home/274004864_1580599505660203_3488215426085879374_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="31.0" layoutX="392.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/home/273888997_1163388077740325_3031392608565865759_n.png" />
+         </image>
+      </ImageView>
+      <JFXTextArea fx:id="descraviss" layoutX="120.0" layoutY="290.0" prefHeight="39.0" prefWidth="194.0" />
+      <Button layoutX="420.0" layoutY="161.0" mnemonicParsing="false" onAction="#Update" prefHeight="25.0" prefWidth="88.0" text="Modifier" />
+      
+      
+   </children>
+</AnchorPane>

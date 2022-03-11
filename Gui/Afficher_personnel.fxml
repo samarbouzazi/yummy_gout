@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Afficher_personnelController">
+   <children>
+      <Label layoutX="378.0" layoutY="33.0" prefHeight="36.0" prefWidth="390.0" text=" Personnels" textFill="#c63131">
+         <font>
+            <Font name="Britannic Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="272.0" layoutY="125.0" text="Nom:" />
+      <TextField fx:id="idnomp" layoutX="342.0" layoutY="125.0" />
+      <Label layoutX="267.0" layoutY="174.0" text="Prénom:" />
+      <TextField fx:id="txt_prenom" layoutX="342.0" layoutY="169.0" />
+      <Label layoutX="278.0" layoutY="222.0" text="Cin : " />
+      <TextField fx:id="txt_cin" layoutX="342.0" layoutY="217.0" />
+      <Label layoutX="271.0" layoutY="270.0" text="Tel:" />
+      <TextField fx:id="txt_tel" layoutX="342.0" layoutY="265.0" />
+      <Label layoutX="271.0" layoutY="313.0" text="Email:" />
+      <TextField fx:id="txt_email" layoutX="342.0" layoutY="308.0" />
+      <Label layoutX="568.0" layoutY="241.0" text="Date d'embauche:" />
+      <Label layoutX="600.0" layoutY="119.0" text="Specialité:" />
+      <Label layoutX="624.0" layoutY="158.0" text="Salaire:" />
+      <TextField fx:id="txt_salaire" layoutX="695.0" layoutY="153.0" />
+      <Label layoutX="568.0" layoutY="202.0" text="Nombre d'heure:" />
+      <TextField fx:id="txt_nbheure" layoutX="695.0" layoutY="197.0" />
+      <JFXButton fx:id="ajout" layoutX="747.0" layoutY="295.0" onMouseClicked="#ajouter" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: grey;" text="Ajouter" textFill="#f8f5f5" />
+      
+      <JFXButton fx:id="prime" layoutX="982.0" layoutY="197.0" onMouseClicked="#primer" style="-fx-background-color: grey;" text="Prime" textFill="WHITE" />
+      <FontAwesomeIconView glyphName="CLOSE" layoutX="1080.0" layoutY="31.0" onMouseClicked="#close" size="20" text="" />
+      <JFXTextField fx:id="id_recherche" focusColor="#07102c" layoutX="826.0" layoutY="455.0" onKeyReleased="#rechercher" prefHeight="30.0" prefWidth="210.0" promptText="recherche ..." style="-fx-background-color: #fcf6ff;" unFocusColor="#252647">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="clear1" layoutX="601.0" layoutY="295.0" onMouseClicked="#clear" prefHeight="31.0" prefWidth="137.0" style="-fx-background-color: grey;" text="clear" textFill="#f5f3f3" />
+      <JFXDatePicker fx:id="txt_date_embauche" layoutX="697.0" layoutY="232.0" prefHeight="31.0" prefWidth="187.0" />
+      <JFXComboBox fx:id="combox" layoutX="691.0" layoutY="104.0" onAction="#select" prefHeight="31.0" prefWidth="187.0" />
+      <Button layoutX="872.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#supprimer" prefHeight="31.0" prefWidth="127.0" style="-fx-background-color: grey;" text="Supprimer" textFill="#f5f3f3" />
+      <TableView fx:id="perso" layoutX="44.0" layoutY="495.0" onMouseClicked="#handleMouseAction" prefHeight="200.0" prefWidth="1069.0">
+        <columns>
+          <TableColumn fx:id="idp" minWidth="0.0" prefWidth="0.0" text="Idp" />
+          <TableColumn fx:id="nom" prefWidth="150.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="cin" prefWidth="75.0" text="Cin" />
+            <TableColumn fx:id="tel" prefWidth="75.0" text="Tel" />
+            <TableColumn fx:id="email" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="salaire" prefWidth="75.0" text="Salaire" />
+            <TableColumn fx:id="specialite" prefWidth="75.0" text="Specialite" />
+            <TableColumn fx:id="nb" prefWidth="129.0" text="Nombre d'heure" />
+            <TableColumn fx:id="date" prefWidth="121.0" text="Date d'embauche" />
+            <TableColumn fx:id="taux" prefWidth="103.0" text="Taux horaire" />
+            <TableColumn fx:id="image1" prefWidth="115.0" text="image" />
+            
+        </columns>
+      </TableView>
+      <ImageView fitHeight="40.0" fitWidth="34.0" layoutX="609.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/274791838_1154901028610440_4085653373926603886_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="751.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/273005573_5036077613097392_6831833910378070497_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="874.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/249586776_1006672123522883_6323310930610050706_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="39.0" layoutX="488.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/274004864_1580599505660203_3488215426085879374_n.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="modf" layoutX="528.0" layoutY="457.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: grey;" text="Modifier" textFill="#fff9f9" />
+      <ImageView fitHeight="40.0" fitWidth="26.0" layoutX="530.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/273888997_1163388077740325_3031392608565865759_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="78.0" layoutY="715.0" text="Nombre des personnels:" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="69.0" layoutY="453.0" prefHeight="36.0" prefWidth="390.0" text="Liste des personnels" textFill="#c63131">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtnb" layoutX="264.0" layoutY="714.0" onMouseClicked="#getnbr" prefHeight="21.0" prefWidth="39.0" style="-fx-background-color: white;" />
+      <FontAwesomeIconView glyphName="SEARCH" glyphStyle="-fx-fill:#5b0e0e" layoutX="1003.0" layoutY="478.0" size="24" text="" wrappingWidth="25.857142448425293" />
+      <Button fx:id="ded" layoutX="928.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#calulator" prefHeight="47.0" prefWidth="176.0" style="-fx-background-color: grey;" text="Calculatrice" textFill="WHITE" />
+      <Button layoutX="905.0" layoutY="705.0" mnemonicParsing="false" onAction="#trier" prefHeight="47.0" prefWidth="153.0" text="trier par salaire" />
+      <ImageView fitHeight="48.0" fitWidth="47.0" layoutX="931.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/14975.png" />
+         </image>
+      </ImageView>
+      <FontAwesomeIconView glyphName="HOME" layoutX="1052.0" layoutY="108.0" onMouseClicked="#home1" size="60" />
+      <Button layoutX="750.0" layoutY="704.0" mnemonicParsing="false" onMouseClicked="#actualiser" prefHeight="48.0" prefWidth="120.0" text="Actualiser" textAlignment="CENTER" />
+      <Button layoutX="14.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#excel" prefHeight="36.0" prefWidth="105.0" style="-fx-background-color: grey;" text="excel" textFill="#fcfcfc" />
+      <ImageView fitHeight="26.0" fitWidth="39.0" layoutX="14.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/ex.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="155.0" layoutX="905.0" layoutY="716.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tri.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="751.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/272800582_673056243891056_7993480874903239728_n.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="29.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#pdf" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: white;" textFill="WHITE" />
+      <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="39.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/pdf.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="imagee" layoutX="342.0" layoutY="366.0" />
+      <ImageView fx:id="imagevieww" fitHeight="150.0" fitWidth="137.0" layoutX="67.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="556.0" layoutY="366.0" mnemonicParsing="false" onMouseClicked="#upload" text="upload" />
+   </children>
+</AnchorPane>

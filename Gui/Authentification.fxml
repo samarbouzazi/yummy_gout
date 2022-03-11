@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="content" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.AuthentificationController">
+   <children>
+      <ImageView fitHeight="318.0" fitWidth="483.0" layoutX="564.0" layoutY="-84.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/274718304_691483915205947_4536177148937474099_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="558.0" layoutY="158.0" prefHeight="50.0" prefWidth="218.0" text="                Welcome">
+         <font>
+            <Font name="Impact" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="714.0" layoutY="294.0" text="sign in to continue" textFill="#a3a3a3">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="username_login" focusColor="#85d4e0" labelFloat="true" layoutX="611.0" layoutY="337.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="10" prefHeight="50.0" prefWidth="341.0" promptText="Email.." style="bor: white;" unFocusColor="#ab1609">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="password_login" focusColor="#85d4e0" labelFloat="true" layoutX="611.0" layoutY="441.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumnCount="10" prefHeight="43.0" prefWidth="341.0" promptText="Password..." unFocusColor="#ab1609">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <Label layoutX="718.0" layoutY="521.0" lineSpacing="1.0" onMouseClicked="#btn_forget_password" text="Forget Password ? " textFill="#575454" underline="true">
+         <font>
+            <Font name="Ebrima Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="820.0" layoutY="661.0" lineSpacing="1.0" text="New User?" textFill="#575454">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="sign_up" layoutX="896.0" layoutY="660.0" lineSpacing="1.0" onMouseClicked="#gotosignup" styleClass="forgetBtn" text="sign up" textFill="#ab1609" underline="true">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="807.0" fitWidth="766.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/IMG17-8901.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btn_login" buttonType="RAISED" layoutX="637.0" layoutY="579.0" onAction="#login1" prefHeight="50.0" prefWidth="300.0" ripplerFill="#ab1609" style="-fx-background-color: #A92522;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView fx:id="home_btn" glyphName="HOME" layoutX="32.0" layoutY="109.0" onMouseClicked="#back" size="100" wrappingWidth="86.0" />
+   </children>
+</AnchorPane>

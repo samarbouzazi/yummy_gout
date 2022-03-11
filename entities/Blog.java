@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package Entities;
 
 /**
  *
@@ -13,22 +13,39 @@ public class Blog {
     private int idblog ; 
     private String titreblog ;
     private String descblog ; 
+    private String image;
+    
+    
+    
+    
+ 
 
     public Blog() {
     }
 
-    public Blog(String titreblog, String descblog) {
+    public Blog(String titreblog, String descblog,String image) {
         this.titreblog = titreblog;
         this.descblog = descblog;
+        this.image=image;
     }  
-    public Blog(int idblog,String titreblog, String descblog) {
+    public Blog(int idblog,String titreblog, String descblog,String image) {
         this.idblog=idblog;
         this.titreblog = titreblog;
         this.descblog = descblog;
+        this.image=image;
     } 
      public Blog(int idblog) {
         this.idblog = idblog;
+        this.image=image;
         
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
     
 
@@ -61,7 +78,7 @@ public class Blog {
 
     @Override
     public String toString() {
-        return "Blog{" + "idblog=" + idblog + ", titreblog=" + titreblog + ", descblog=" + descblog + '}';
+        return "Blog{" + "idblog=" + idblog + ", titreblog=" + titreblog + ", descblog=" + descblog +",image=" + image+ '}';
     }
     
     
